@@ -5,10 +5,10 @@ apis:
   - aid: alation:alation
     name: Alation
     tags:
-      - Data Catalogs
-      - Governance
       - Collaboration
       - Data
+      - Data Catalogs
+      - Governance
     humanURL: https://developer.alation.com
     properties:
       - url: https://developer.alation.com
@@ -23,10 +23,10 @@ apis:
       innovation.
 name: Alation
 tags:
-  - Data Catalogs
-  - Governance
   - Collaboration
   - Data
+  - Data Catalogs
+  - Governance
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
