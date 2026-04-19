@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "title": "Sample Title",
+  "description": "A sample description",
+  "policy_type": "table",
+  "stewards": [],
+  "url": "https://your-alation-instance.com/catalog",
+  "created_at": "2026-04-19T12:00:00Z"
+}

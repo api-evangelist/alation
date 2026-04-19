@@ -1,0 +1,236 @@
+openapi: 3.0.3
+info:
+  title: Alation Search API
+  description: >-
+    REST API for searching and discovering catalog assets in the Alation
+    data intelligence platform. Supports full-text search, AI-powered
+    semantic search, and aggregated context retrieval.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+  - url: https://{instance}/integration/v2
+    description: Alation instance
+    variables:
+      instance:
+        default: your-alation-instance.com
+security:
+  - BearerToken: []
+tags:
+  - name: Search
+    description: Search catalog assets
+  - name: Aggregated Context
+    description: Retrieve aggregated context for AI applications
+paths:
+  /search/:
+    get:
+      operationId: searchCatalog
+      summary: Search the catalog
+      description: >-
+        Full-text search across all catalog objects including tables, columns,
+        data sources, glossary terms, and queries.
+      tags:
+        - Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query string
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by object type
+          schema:
+            type: string
+            enum: [table, attribute, datasource, schema, glossary_term, query, article]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+        '401':
+          description: Unauthorized
+  /aggregated_context/:
+    post:
+      operationId: getAggregatedContext
+      summary: Get aggregated context
+      description: >-
+        Retrieves relevant catalog context for a given query or set of objects,
+        optimized for AI and LLM consumption.
+      tags:
+        - Aggregated Context
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContextRequest'
+      responses:
+        '200':
+          description: Aggregated context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContextResponse'
+        '400':
+          description: Invalid request
+  /article/:
+    get:
+      operationId: listArticles
+      summary: List articles
+      description: Returns catalog articles (wiki pages and documentation).
+      tags:
+        - Search
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of articles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleList'
+  /article/{id}/:
+    get:
+      operationId: getArticle
+      summary: Get an article
+      description: Returns a specific catalog article.
+      tags:
+        - Search
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Article details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+components:
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+  schemas:
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        object_type:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+          format: uri
+        score:
+          type: number
+          format: float
+          description: Relevance score
+        breadcrumb:
+          type: string
+          description: Path to the object in the catalog hierarchy
+    SearchResults:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+    ContextRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: Natural language query for context retrieval
+        object_types:
+          type: array
+          items:
+            type: string
+          description: Filter results by object types
+        limit:
+          type: integer
+          default: 10
+    ContextResponse:
+      type: object
+      properties:
+        context:
+          type: array
+          items:
+            type: object
+            properties:
+              object_type:
+                type: string
+              object_id:
+                type: integer
+              title:
+                type: string
+              description:
+                type: string
+              metadata:
+                type: object
+                additionalProperties: true
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        body:
+          type: string
+        url:
+          type: string
+          format: uri
+        author:
+          type: integer
+          description: User ID of article author
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ArticleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Article'

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-governance-data-quality-score-structure.json",
+  "title": "DataQualityScore",
+  "description": "Data quality scores for a catalog object",
+  "type": "object",
+  "properties": {
+    "object_type": {
+      "type": "string",
+      "description": ""
+    },
+    "object_id": {
+      "type": "int32",
+      "description": ""
+    },
+    "overall_score": {
+      "type": "float",
+      "description": ""
+    },
+    "dimensions": {
+      "type": "object",
+      "description": ""
+    },
+    "last_evaluated": {
+      "type": "datetime",
+      "description": ""
+    }
+  }
+}

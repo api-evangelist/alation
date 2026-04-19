@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-search-search-results-structure.json",
+  "title": "SearchResults",
+  "description": "Collection of search results",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "int32",
+      "description": ""
+    },
+    "results": {
+      "type": "array",
+      "description": ""
+    }
+  }
+}

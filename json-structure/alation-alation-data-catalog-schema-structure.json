@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-data-catalog-schema-structure.json",
+  "title": "Schema",
+  "description": "A database schema in the Alation catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": ""
+    },
+    "name": {
+      "type": "string",
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "description": ""
+    },
+    "description": {
+      "type": "string",
+      "description": ""
+    },
+    "ds_id": {
+      "type": "int32",
+      "description": "Parent data source ID"
+    },
+    "url": {
+      "type": "uri",
+      "description": ""
+    }
+  }
+}

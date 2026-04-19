@@ -1,0 +1,142 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alation Lineage API
+  description: >-
+    Dataflow and lineage management for the Alation data intelligence platform,
+    supporting creation, retrieval, and deletion of lineage paths.
+  tags:
+    - Alation
+    - Data Lineage
+    - Dataflow
+    - Governance
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALATION_HOST: ALATION_HOST
+      ALATION_TOKEN: ALATION_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: alation-lineage
+      baseUri: "https://{{env.ALATION_HOST}}/api/v1"
+      description: Alation Lineage REST API
+      auth:
+        type: bearer
+        token: "{{env.ALATION_TOKEN}}"
+      resources:
+        - name: dataflows
+          path: /dataflow/
+          description: Dataflow lineage objects
+          operations:
+            - name: list-dataflows
+              method: GET
+              description: List all dataflow objects
+              outputParameters:
+                - name: dataflows
+                  type: array
+                  value: "$."
+            - name: create-dataflow
+              method: POST
+              description: Create a new dataflow object
+              inputParameters:
+                - name: body
+                  type: object
+                  in: body
+              outputParameters:
+                - name: dataflow
+                  type: object
+                  value: "$."
+            - name: get-dataflow
+              method: GET
+              description: Get a specific dataflow by ID
+              inputParameters:
+                - name: id
+                  type: integer
+                  in: path
+              outputParameters:
+                - name: dataflow
+                  type: object
+                  value: "$."
+            - name: delete-dataflow
+              method: DELETE
+              description: Delete a dataflow object
+              inputParameters:
+                - name: id
+                  type: integer
+                  in: path
+        - name: lineage
+          path: /lineage/
+          description: Lineage graph retrieval
+          operations:
+            - name: get-lineage
+              method: GET
+              description: Get upstream and downstream lineage for a catalog object
+              inputParameters:
+                - name: object_type
+                  type: string
+                  in: query
+                - name: object_id
+                  type: integer
+                  in: query
+                - name: direction
+                  type: string
+                  in: query
+              outputParameters:
+                - name: lineage_graph
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: alation-lineage-api
+      resources:
+        - path: /v1/lineage
+          name: lineage
+          operations:
+            - method: GET
+              name: get-lineage
+              description: Get lineage for a catalog object
+              call: "alation-lineage.get-lineage"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: alation-lineage-mcp
+      transport: http
+      tools:
+        - name: get-alation-lineage
+          description: Get upstream and downstream data lineage for a catalog object in Alation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-lineage.get-lineage"
+          inputParameters:
+            - name: object_type
+              type: string
+              description: Type of catalog object (table, attribute, etc.)
+            - name: object_id
+              type: integer
+              description: ID of the catalog object
+            - name: direction
+              type: string
+              description: Lineage direction (upstream, downstream, both)
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-alation-dataflows
+          description: List all dataflow objects in the Alation lineage graph
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-lineage.list-dataflows"
+          outputParameters:
+            - type: array
+              mapping: "$."

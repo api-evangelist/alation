@@ -1,0 +1,161 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alation Governance API
+  description: >-
+    Business glossary, policy management, and data quality for the Alation
+    data intelligence platform.
+  tags:
+    - Alation
+    - Data Governance
+    - Business Glossary
+    - Data Quality
+    - Policy
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALATION_HOST: ALATION_HOST
+      ALATION_TOKEN: ALATION_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: alation-governance
+      baseUri: "https://{{env.ALATION_HOST}}/integration/v2"
+      description: Alation Governance REST API
+      auth:
+        type: bearer
+        token: "{{env.ALATION_TOKEN}}"
+      resources:
+        - name: glossary-terms
+          path: /glossary_term/
+          description: Business glossary terms
+          operations:
+            - name: list-glossary-terms
+              method: GET
+              description: List business glossary terms
+              outputParameters:
+                - name: terms
+                  type: array
+                  value: "$."
+            - name: create-glossary-term
+              method: POST
+              description: Create a glossary term
+              inputParameters:
+                - name: body
+                  type: object
+                  in: body
+              outputParameters:
+                - name: term
+                  type: object
+                  value: "$."
+            - name: get-glossary-term
+              method: GET
+              description: Get a glossary term by ID
+              inputParameters:
+                - name: id
+                  type: integer
+                  in: path
+              outputParameters:
+                - name: term
+                  type: object
+                  value: "$."
+        - name: policies
+          path: /policy/
+          description: Data governance policies
+          operations:
+            - name: list-policies
+              method: GET
+              description: List governance policies
+              outputParameters:
+                - name: policies
+                  type: array
+                  value: "$."
+        - name: data-quality-rules
+          path: /data_quality/rule/
+          description: Data quality rules
+          operations:
+            - name: list-dq-rules
+              method: GET
+              description: List data quality rules
+              outputParameters:
+                - name: rules
+                  type: array
+                  value: "$."
+        - name: data-quality-scores
+          path: /data_quality/score/
+          description: Data quality scores
+          operations:
+            - name: get-dq-scores
+              method: GET
+              description: Get data quality scores for a catalog object
+              inputParameters:
+                - name: object_type
+                  type: string
+                  in: query
+                - name: object_id
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: scores
+                  type: array
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8102
+      namespace: alation-governance-api
+      resources:
+        - path: /v1/glossary
+          name: glossary-terms
+          operations:
+            - method: GET
+              name: list-glossary-terms
+              description: List glossary terms
+              call: "alation-governance.list-glossary-terms"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9102
+      namespace: alation-governance-mcp
+      transport: http
+      tools:
+        - name: list-alation-glossary-terms
+          description: List business glossary terms from the Alation data catalog
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-governance.list-glossary-terms"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: list-alation-policies
+          description: List data governance policies in Alation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-governance.list-policies"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-alation-data-quality-scores
+          description: Get data quality scores for a catalog object in Alation
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-governance.get-dq-scores"
+          inputParameters:
+            - name: object_type
+              type: string
+              description: Catalog object type (table, attribute, etc.)
+            - name: object_id
+              type: integer
+              description: Catalog object ID
+          outputParameters:
+            - type: array
+              mapping: "$."

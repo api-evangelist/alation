@@ -1,0 +1,231 @@
+{
+  "@context": {
+    "alation": "https://alation.com/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "DataSource": {
+      "@id": "alation:DataSource"
+    },
+    "id": {
+      "@id": "alation:id",
+      "@type": "xsd:integer"
+    },
+    "title": {
+      "@id": "alation:title",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "alation:description",
+      "@type": "xsd:string"
+    },
+    "dbtype": {
+      "@id": "alation:dbtype",
+      "@type": "xsd:string"
+    },
+    "host": {
+      "@id": "alation:host",
+      "@type": "xsd:string"
+    },
+    "port": {
+      "@id": "alation:port",
+      "@type": "xsd:integer"
+    },
+    "is_virtual": {
+      "@id": "alation:is_virtual",
+      "@type": "xsd:boolean"
+    },
+    "url": {
+      "@id": "alation:url",
+      "@type": "xsd:anyURI"
+    },
+    "Schema": {
+      "@id": "alation:Schema"
+    },
+    "name": {
+      "@id": "alation:name",
+      "@type": "xsd:string"
+    },
+    "ds_id": {
+      "@id": "alation:ds_id",
+      "@type": "xsd:integer"
+    },
+    "Table": {
+      "@id": "alation:Table"
+    },
+    "schema_id": {
+      "@id": "alation:schema_id",
+      "@type": "xsd:integer"
+    },
+    "table_type": {
+      "@id": "alation:table_type",
+      "@type": "xsd:string"
+    },
+    "Column": {
+      "@id": "alation:Column"
+    },
+    "data_type": {
+      "@id": "alation:data_type",
+      "@type": "xsd:string"
+    },
+    "table_id": {
+      "@id": "alation:table_id",
+      "@type": "xsd:integer"
+    },
+    "is_nullable": {
+      "@id": "alation:is_nullable",
+      "@type": "xsd:boolean"
+    },
+    "is_primary_key": {
+      "@id": "alation:is_primary_key",
+      "@type": "xsd:boolean"
+    },
+    "CustomFieldValue": {
+      "@id": "alation:CustomFieldValue"
+    },
+    "field_id": {
+      "@id": "alation:field_id",
+      "@type": "xsd:integer"
+    },
+    "field_name": {
+      "@id": "alation:field_name",
+      "@type": "xsd:string"
+    },
+    "object_type": {
+      "@id": "alation:object_type",
+      "@type": "xsd:string"
+    },
+    "object_id": {
+      "@id": "alation:object_id",
+      "@type": "xsd:integer"
+    },
+    "value": {
+      "@id": "alation:value",
+      "@type": "xsd:string"
+    },
+    "Dataflow": {
+      "@id": "alation:Dataflow"
+    },
+    "external_id": {
+      "@id": "alation:external_id",
+      "@type": "xsd:string"
+    },
+    "sources": {
+      "@id": "alation:sources",
+      "@type": "xsd:string"
+    },
+    "targets": {
+      "@id": "alation:targets",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "alation:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "alation:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "LineageGraph": {
+      "@id": "alation:LineageGraph"
+    },
+    "nodes": {
+      "@id": "alation:nodes",
+      "@type": "xsd:string"
+    },
+    "edges": {
+      "@id": "alation:edges",
+      "@type": "xsd:string"
+    },
+    "GlossaryTerm": {
+      "@id": "alation:GlossaryTerm"
+    },
+    "abbreviation": {
+      "@id": "alation:abbreviation",
+      "@type": "xsd:string"
+    },
+    "synonyms": {
+      "@id": "alation:synonyms",
+      "@type": "xsd:string"
+    },
+    "stewards": {
+      "@id": "alation:stewards",
+      "@type": "xsd:string"
+    },
+    "Policy": {
+      "@id": "alation:Policy"
+    },
+    "policy_type": {
+      "@id": "alation:policy_type",
+      "@type": "xsd:string"
+    },
+    "DataQualityRule": {
+      "@id": "alation:DataQualityRule"
+    },
+    "rule_type": {
+      "@id": "alation:rule_type",
+      "@type": "xsd:string"
+    },
+    "DataQualityScore": {
+      "@id": "alation:DataQualityScore"
+    },
+    "overall_score": {
+      "@id": "alation:overall_score",
+      "@type": "xsd:decimal"
+    },
+    "dimensions": {
+      "@id": "alation:dimensions",
+      "@type": "xsd:string"
+    },
+    "last_evaluated": {
+      "@id": "alation:last_evaluated",
+      "@type": "xsd:dateTime"
+    },
+    "SearchResult": {
+      "@id": "alation:SearchResult"
+    },
+    "score": {
+      "@id": "alation:score",
+      "@type": "xsd:decimal"
+    },
+    "breadcrumb": {
+      "@id": "alation:breadcrumb",
+      "@type": "xsd:string"
+    },
+    "SearchResults": {
+      "@id": "alation:SearchResults"
+    },
+    "total": {
+      "@id": "alation:total",
+      "@type": "xsd:integer"
+    },
+    "results": {
+      "@id": "alation:results",
+      "@type": "xsd:string"
+    },
+    "ContextRequest": {
+      "@id": "alation:ContextRequest"
+    },
+    "query": {
+      "@id": "alation:query",
+      "@type": "xsd:string"
+    },
+    "object_types": {
+      "@id": "alation:object_types",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "alation:limit",
+      "@type": "xsd:integer"
+    },
+    "Article": {
+      "@id": "alation:Article"
+    },
+    "body": {
+      "@id": "alation:body",
+      "@type": "xsd:string"
+    },
+    "author": {
+      "@id": "alation:author",
+      "@type": "xsd:integer"
+    }
+  }
+}

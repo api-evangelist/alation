@@ -1,0 +1,407 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog API
+  description: >-
+    REST API for managing data sources, schemas, tables, and catalog objects
+    in the Alation data intelligence platform. Supports metadata retrieval,
+    custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+  - url: https://{instance}/integration/v2
+    description: Alation instance
+    variables:
+      instance:
+        default: your-alation-instance.com
+        description: Your Alation instance hostname
+security:
+  - BearerToken: []
+tags:
+  - name: Data Sources
+    description: Manage data source connections
+  - name: Schemas
+    description: Retrieve schema metadata
+  - name: Tables
+    description: Retrieve table metadata
+  - name: Columns
+    description: Retrieve column metadata
+  - name: Custom Fields
+    description: Manage custom field values
+paths:
+  /datasource/:
+    get:
+      operationId: listDataSources
+      summary: List data sources
+      description: Returns a list of all data sources configured in the Alation catalog.
+      tags:
+        - Data Sources
+      parameters:
+        - name: limit
+          in: query
+          description: Number of results to return
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+        - name: skip
+          in: query
+          description: Number of results to skip for pagination
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of data sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceList'
+        '401':
+          description: Unauthorized
+  /datasource/{id}/:
+    get:
+      operationId: getDataSource
+      summary: Get a data source
+      description: Returns details for a specific data source by ID.
+      tags:
+        - Data Sources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Data source ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Data source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '404':
+          description: Data source not found
+  /schema/:
+    get:
+      operationId: listSchemas
+      summary: List schemas
+      description: Returns schemas for a given data source.
+      tags:
+        - Schemas
+      parameters:
+        - name: ds_id
+          in: query
+          required: true
+          description: Data source ID to filter schemas
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaList'
+  /schema/{id}/:
+    get:
+      operationId: getSchema
+      summary: Get a schema
+      description: Returns details for a specific schema.
+      tags:
+        - Schemas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Schema details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schema'
+  /table/:
+    get:
+      operationId: listTables
+      summary: List tables
+      description: Returns tables for a given schema or data source.
+      tags:
+        - Tables
+      parameters:
+        - name: schema_id
+          in: query
+          description: Schema ID to filter tables
+          schema:
+            type: integer
+        - name: ds_id
+          in: query
+          description: Data source ID to filter tables
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableList'
+  /table/{id}/:
+    get:
+      operationId: getTable
+      summary: Get a table
+      description: Returns metadata for a specific table.
+      tags:
+        - Tables
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+  /attribute/:
+    get:
+      operationId: listColumns
+      summary: List columns
+      description: Returns columns for a given table.
+      tags:
+        - Columns
+      parameters:
+        - name: table_id
+          in: query
+          required: true
+          description: Table ID to filter columns
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of columns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnList'
+  /custom_field_value/:
+    get:
+      operationId: listCustomFieldValues
+      summary: List custom field values
+      description: Returns custom field values for catalog objects.
+      tags:
+        - Custom Fields
+      parameters:
+        - name: object_type
+          in: query
+          description: Type of catalog object (table, column, datasource, etc.)
+          schema:
+            type: string
+        - name: object_id
+          in: query
+          description: ID of the catalog object
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Custom field values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldValueList'
+    put:
+      operationId: updateCustomFieldValues
+      summary: Update custom field values
+      description: Batch update custom field values for catalog objects.
+      tags:
+        - Custom Fields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomFieldValueUpdateList'
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Invalid request
+components:
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/
+  schemas:
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier
+        title:
+          type: string
+          description: Display title
+        description:
+          type: string
+          description: Data source description
+        dbtype:
+          type: string
+          description: Database type (postgresql, mysql, snowflake, etc.)
+        host:
+          type: string
+          description: Database host
+        port:
+          type: integer
+          description: Database port
+        db_username:
+          type: string
+          description: Database username
+        is_virtual:
+          type: boolean
+          description: Whether this is a virtual data source
+        url:
+          type: string
+          format: uri
+          description: Alation catalog URL for this data source
+    DataSourceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
+    Schema:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        ds_id:
+          type: integer
+          description: Parent data source ID
+        url:
+          type: string
+          format: uri
+    SchemaList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Schema'
+    Table:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        schema_id:
+          type: integer
+        ds_id:
+          type: integer
+        table_type:
+          type: string
+          enum: [TABLE, VIEW, EXTERNAL]
+        url:
+          type: string
+          format: uri
+    TableList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Table'
+    Column:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        data_type:
+          type: string
+        table_id:
+          type: integer
+        ds_id:
+          type: integer
+        is_nullable:
+          type: boolean
+        is_primary_key:
+          type: boolean
+    ColumnList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Column'
+    CustomFieldValue:
+      type: object
+      properties:
+        field_id:
+          type: integer
+        field_name:
+          type: string
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        value:
+          description: Field value (string, array, or object depending on field type)
+    CustomFieldValueList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomFieldValue'
+    CustomFieldValueUpdateList:
+      type: array
+      items:
+        type: object
+        properties:
+          field_id:
+            type: integer
+          object_type:
+            type: string
+          object_id:
+            type: integer
+          value:
+            description: New field value

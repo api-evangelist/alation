@@ -1,0 +1,219 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alation Data Catalog API
+  description: >-
+    Data source, schema, table, column, and custom field management for
+    the Alation data intelligence platform catalog.
+  tags:
+    - Alation
+    - Data Catalog
+    - Metadata
+    - Data Sources
+    - Governance
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALATION_HOST: ALATION_HOST
+      ALATION_TOKEN: ALATION_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: alation-data-catalog
+      baseUri: "https://{{env.ALATION_HOST}}/integration/v2"
+      description: Alation Data Catalog REST API
+      auth:
+        type: bearer
+        token: "{{env.ALATION_TOKEN}}"
+      resources:
+        - name: datasources
+          path: /datasource/
+          description: Data source connections
+          operations:
+            - name: list-datasources
+              method: GET
+              description: List all data sources in the Alation catalog
+              outputParameters:
+                - name: datasources
+                  type: array
+                  value: "$."
+            - name: get-datasource
+              method: GET
+              description: Get a specific data source by ID
+              inputParameters:
+                - name: id
+                  type: integer
+                  in: path
+              outputParameters:
+                - name: datasource
+                  type: object
+                  value: "$."
+        - name: schemas
+          path: /schema/
+          description: Database schemas
+          operations:
+            - name: list-schemas
+              method: GET
+              description: List schemas for a data source
+              inputParameters:
+                - name: ds_id
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: schemas
+                  type: array
+                  value: "$."
+        - name: tables
+          path: /table/
+          description: Database tables
+          operations:
+            - name: list-tables
+              method: GET
+              description: List tables for a schema or data source
+              inputParameters:
+                - name: schema_id
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: tables
+                  type: array
+                  value: "$."
+            - name: get-table
+              method: GET
+              description: Get a specific table by ID
+              inputParameters:
+                - name: id
+                  type: integer
+                  in: path
+              outputParameters:
+                - name: table
+                  type: object
+                  value: "$."
+        - name: columns
+          path: /attribute/
+          description: Table columns
+          operations:
+            - name: list-columns
+              method: GET
+              description: List columns for a table
+              inputParameters:
+                - name: table_id
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: columns
+                  type: array
+                  value: "$."
+        - name: custom-fields
+          path: /custom_field_value/
+          description: Custom field values for catalog objects
+          operations:
+            - name: get-custom-field-values
+              method: GET
+              description: Get custom field values for a catalog object
+              inputParameters:
+                - name: object_type
+                  type: string
+                  in: query
+                - name: object_id
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: custom_fields
+                  type: array
+                  value: "$."
+            - name: update-custom-field-values
+              method: PUT
+              description: Batch update custom field values
+              inputParameters:
+                - name: body
+                  type: array
+                  in: body
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: alation-data-catalog-api
+      resources:
+        - path: /v1/datasources
+          name: datasources
+          operations:
+            - method: GET
+              name: list-datasources
+              description: List all Alation data sources
+              call: "alation-data-catalog.list-datasources"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+        - path: /v1/tables
+          name: tables
+          operations:
+            - method: GET
+              name: list-tables
+              description: List tables for a schema
+              call: "alation-data-catalog.list-tables"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: alation-data-catalog-mcp
+      transport: http
+      tools:
+        - name: list-alation-datasources
+          description: List all data sources configured in the Alation catalog
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-data-catalog.list-datasources"
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: get-alation-datasource
+          description: Get details for a specific Alation data source by ID
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-data-catalog.get-datasource"
+          inputParameters:
+            - name: id
+              type: integer
+              description: Data source ID
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-alation-tables
+          description: List tables in a schema or data source
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-data-catalog.list-tables"
+          inputParameters:
+            - name: schema_id
+              type: integer
+              description: Schema ID to filter tables
+          outputParameters:
+            - type: array
+              mapping: "$."
+        - name: list-alation-columns
+          description: List columns for a table in the Alation catalog
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-data-catalog.list-columns"
+          inputParameters:
+            - name: table_id
+              type: integer
+              description: Table ID
+          outputParameters:
+            - type: array
+              mapping: "$."

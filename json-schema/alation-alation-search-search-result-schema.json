@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-schema/alation-alation-search-search-result-schema.json",
+  "title": "SearchResult",
+  "description": "A search result from the Alation catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "object_type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "score": {
+      "type": "number"
+    },
+    "breadcrumb": {
+      "type": "string"
+    }
+  }
+}

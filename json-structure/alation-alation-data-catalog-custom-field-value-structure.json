@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-data-catalog-custom-field-value-structure.json",
+  "title": "CustomFieldValue",
+  "description": "A custom field value for a catalog object",
+  "type": "object",
+  "properties": {
+    "field_id": {
+      "type": "int32",
+      "description": ""
+    },
+    "field_name": {
+      "type": "string",
+      "description": ""
+    },
+    "object_type": {
+      "type": "string",
+      "description": ""
+    },
+    "object_id": {
+      "type": "int32",
+      "description": ""
+    },
+    "value": {
+      "type": "string",
+      "description": "Field value"
+    }
+  }
+}

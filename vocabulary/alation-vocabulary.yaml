@@ -1,0 +1,402 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Alation
+  description: >-
+    Unified taxonomy for the Alation data intelligence platform covering
+    data catalog management, lineage tracking, governance workflows, and
+    AI-powered search capabilities.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: alation-data-catalog
+      version: "v2"
+      baseUrl: "https://{instance}/integration/v2"
+      status: active
+      description: Data source, schema, table, and column metadata management
+    - namespace: alation-lineage
+      version: "v1"
+      baseUrl: "https://{instance}/api/v1"
+      status: active
+      description: Dataflow and lineage graph management
+    - namespace: alation-governance
+      version: "v2"
+      baseUrl: "https://{instance}/integration/v2"
+      status: active
+      description: Business glossary, policies, and data quality
+    - namespace: alation-search
+      version: "v2"
+      baseUrl: "https://{instance}/integration/v2"
+      status: active
+      description: Full-text and AI-powered catalog search
+
+  resources:
+    - name: datasources
+      apis:
+        - alation-data-catalog
+      actions:
+        - get
+        - list
+      description: Data source connections in the Alation catalog
+    - name: schemas
+      apis:
+        - alation-data-catalog
+      actions:
+        - get
+        - list
+      description: Database schemas cataloged in Alation
+    - name: tables
+      apis:
+        - alation-data-catalog
+      actions:
+        - get
+        - list
+      description: Database tables cataloged in Alation
+    - name: columns
+      apis:
+        - alation-data-catalog
+      actions:
+        - list
+      description: Table columns cataloged in Alation
+    - name: custom-fields
+      apis:
+        - alation-data-catalog
+      actions:
+        - get
+        - update
+      description: Custom metadata fields for catalog objects
+    - name: dataflows
+      apis:
+        - alation-lineage
+      actions:
+        - get
+        - list
+        - create
+        - update
+        - delete
+      description: Dataflow objects representing lineage paths
+    - name: lineage
+      apis:
+        - alation-lineage
+      actions:
+        - get
+      description: Upstream and downstream lineage for catalog objects
+    - name: glossary-terms
+      apis:
+        - alation-governance
+      actions:
+        - get
+        - list
+        - create
+        - update
+        - delete
+      description: Business glossary terms in the Alation catalog
+    - name: policies
+      apis:
+        - alation-governance
+      actions:
+        - get
+        - list
+        - create
+      description: Data governance policies
+    - name: data-quality
+      apis:
+        - alation-governance
+      actions:
+        - get
+        - list
+        - create
+      description: Data quality rules and scores
+    - name: search
+      apis:
+        - alation-search
+      actions:
+        - get
+      description: Full-text and semantic catalog search
+    - name: articles
+      apis:
+        - alation-search
+      actions:
+        - get
+        - list
+      description: Catalog articles and wiki documentation
+
+  actions:
+    - name: get
+      httpMethods:
+        - GET
+      pattern: read
+      description: Retrieve a single resource
+    - name: list
+      httpMethods:
+        - GET
+      pattern: read
+      description: List all resources of a type
+    - name: create
+      httpMethods:
+        - POST
+      pattern: write
+      description: Create a new resource
+    - name: update
+      httpMethods:
+        - PUT
+        - PATCH
+      pattern: write
+      description: Update an existing resource
+    - name: delete
+      httpMethods:
+        - DELETE
+      pattern: destructive
+      description: Delete a resource
+
+  schemas:
+    catalog:
+      - name: DataSource
+        description: A data source connection configured in Alation
+        keyProperties:
+          - id
+          - title
+          - dbtype
+          - host
+      - name: Schema
+        description: A database schema in the Alation catalog
+        keyProperties:
+          - id
+          - name
+          - ds_id
+      - name: Table
+        description: A database table in the Alation catalog
+        keyProperties:
+          - id
+          - name
+          - schema_id
+          - table_type
+      - name: Column
+        description: A table column in the Alation catalog
+        keyProperties:
+          - id
+          - name
+          - data_type
+          - table_id
+    lineage:
+      - name: Dataflow
+        description: A dataflow object representing lineage between catalog objects
+        keyProperties:
+          - id
+          - sources
+          - targets
+      - name: LineageGraph
+        description: A graph of lineage nodes and edges
+        keyProperties:
+          - nodes
+          - edges
+    governance:
+      - name: GlossaryTerm
+        description: A business glossary term
+        keyProperties:
+          - id
+          - title
+          - description
+          - stewards
+      - name: Policy
+        description: A data governance policy
+        keyProperties:
+          - id
+          - title
+          - policy_type
+      - name: DataQualityRule
+        description: A data quality rule for a catalog object
+        keyProperties:
+          - id
+          - rule_type
+          - object_type
+
+  parameters:
+    identifiers:
+      - name: id
+        description: Integer ID of the catalog object
+        type: integer
+      - name: ds_id
+        description: Data source ID
+        type: integer
+      - name: schema_id
+        description: Schema ID
+        type: integer
+      - name: table_id
+        description: Table ID
+        type: integer
+      - name: object_id
+        description: Generic catalog object ID
+        type: integer
+    filters:
+      - name: object_type
+        description: Type of catalog object
+        type: string
+      - name: q
+        description: Search query string
+        type: string
+
+  enums:
+    tableTypes:
+      - TABLE
+      - VIEW
+      - EXTERNAL
+    policyTypes:
+      - data_protection
+      - retention
+      - access_control
+      - quality
+    dataQualityRuleTypes:
+      - accuracy
+      - completeness
+      - consistency
+      - timeliness
+      - uniqueness
+      - validity
+      - custom
+    lineageDirections:
+      - upstream
+      - downstream
+      - both
+
+  authentication:
+    schemes:
+      - name: BearerToken
+        description: API access token from /integration/v1/createRefreshToken/
+        apis:
+          - alation-data-catalog
+          - alation-lineage
+          - alation-governance
+          - alation-search
+
+capability:
+  workflows:
+    - name: Data Intelligence
+      file: capabilities/data-intelligence.yaml
+      description: Unified data catalog search, lineage, governance, and discovery
+      apisCombined:
+        - alation-data-catalog
+        - alation-lineage
+        - alation-governance
+        - alation-search
+      toolCount: 9
+      personas:
+        - Data Steward
+        - Data Analyst
+        - AI Agent Developer
+
+  personas:
+    - id: data-steward
+      name: Data Steward
+      description: >-
+        Manages data quality, governance policies, and business glossary
+        in the Alation catalog. Assigns stewardship, creates glossary terms,
+        and monitors data quality scores.
+      workflows:
+        - Data Intelligence
+    - id: data-analyst
+      name: Data Analyst
+      description: >-
+        Discovers and explores data assets in the Alation catalog.
+        Searches for tables and columns, reviews lineage, and accesses
+        metadata to understand data context.
+      workflows:
+        - Data Intelligence
+    - id: ai-agent-developer
+      name: AI Agent Developer
+      description: >-
+        Builds AI applications using Alation's catalog context and search APIs.
+        Integrates aggregated context into LLM workflows for data discovery.
+      workflows:
+        - Data Intelligence
+
+  domains:
+    - name: Data Discovery
+      description: Search and browse catalog assets
+      resources:
+        - search
+        - datasources
+        - schemas
+        - tables
+        - columns
+        - articles
+    - name: Data Lineage
+      description: Track data flows between systems and tables
+      resources:
+        - dataflows
+        - lineage
+    - name: Data Governance
+      description: Manage policies, glossary, and data quality
+      resources:
+        - glossary-terms
+        - policies
+        - data-quality
+        - custom-fields
+
+  namespaces:
+    - name: alation-data-catalog
+      type: consumed
+      baseUri: "https://{instance}/integration/v2"
+    - name: alation-lineage
+      type: consumed
+      baseUri: "https://{instance}/api/v1"
+    - name: alation-governance
+      type: consumed
+      baseUri: "https://{instance}/integration/v2"
+    - name: alation-search
+      type: consumed
+      baseUri: "https://{instance}/integration/v2"
+    - name: alation-data-intelligence-api
+      type: rest
+      port: 8080
+    - name: alation-data-intelligence-mcp
+      type: mcp
+      port: 9090
+
+  binds:
+    - name: ALATION_HOST
+      description: Hostname of the Alation instance
+      workflows:
+        - Data Intelligence
+    - name: ALATION_TOKEN
+      description: Bearer token for Alation API authentication
+      workflows:
+        - Data Intelligence
+
+crossReference:
+  - resource: search
+    operations:
+      - search-catalog
+      - get-aggregated-context
+    workflows:
+      - Data Intelligence
+    personas:
+      - Data Analyst
+      - AI Agent Developer
+  - resource: tables
+    operations:
+      - list-tables
+      - get-table
+    workflows:
+      - Data Intelligence
+    personas:
+      - Data Analyst
+      - Data Steward
+  - resource: lineage
+    operations:
+      - get-lineage
+    workflows:
+      - Data Intelligence
+    personas:
+      - Data Analyst
+      - Data Steward
+  - resource: glossary-terms
+    operations:
+      - list-glossary-terms
+      - create-glossary-term
+    workflows:
+      - Data Intelligence
+    personas:
+      - Data Steward

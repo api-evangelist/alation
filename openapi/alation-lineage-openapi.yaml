@@ -1,0 +1,256 @@
+openapi: 3.0.3
+info:
+  title: Alation Lineage API
+  description: >-
+    REST API for managing data lineage and dataflow objects in the Alation
+    data intelligence platform. Supports creating, retrieving, updating,
+    and deleting lineage paths and dataflow objects.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+  - url: https://{instance}/api/v1
+    description: Alation instance
+    variables:
+      instance:
+        default: your-alation-instance.com
+security:
+  - BearerToken: []
+tags:
+  - name: Dataflows
+    description: Manage dataflow lineage objects
+  - name: Lineage
+    description: Retrieve lineage paths between catalog objects
+paths:
+  /dataflow/:
+    get:
+      operationId: listDataflows
+      summary: List dataflows
+      description: Returns a list of all dataflow objects.
+      tags:
+        - Dataflows
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of dataflow objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataflowList'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createDataflow
+      summary: Create a dataflow
+      description: Creates a new dataflow object representing a lineage path.
+      tags:
+        - Dataflows
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataflowRequest'
+      responses:
+        '201':
+          description: Dataflow created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataflow'
+        '400':
+          description: Invalid request
+  /dataflow/{id}/:
+    get:
+      operationId: getDataflow
+      summary: Get a dataflow
+      description: Returns details for a specific dataflow object.
+      tags:
+        - Dataflows
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dataflow details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataflow'
+        '404':
+          description: Dataflow not found
+    put:
+      operationId: updateDataflow
+      summary: Update a dataflow
+      description: Updates an existing dataflow object.
+      tags:
+        - Dataflows
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataflowRequest'
+      responses:
+        '200':
+          description: Dataflow updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataflow'
+    delete:
+      operationId: deleteDataflow
+      summary: Delete a dataflow
+      description: Deletes a dataflow object and its associated lineage paths.
+      tags:
+        - Dataflows
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Dataflow deleted
+  /lineage/:
+    get:
+      operationId: getLineage
+      summary: Get lineage for an object
+      description: Returns upstream and downstream lineage paths for a catalog object.
+      tags:
+        - Lineage
+      parameters:
+        - name: object_type
+          in: query
+          required: true
+          description: Type of catalog object (table, attribute, etc.)
+          schema:
+            type: string
+        - name: object_id
+          in: query
+          required: true
+          description: ID of the catalog object
+          schema:
+            type: integer
+        - name: direction
+          in: query
+          description: Lineage direction
+          schema:
+            type: string
+            enum: [upstream, downstream, both]
+            default: both
+      responses:
+        '200':
+          description: Lineage paths
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineageGraph'
+components:
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+  schemas:
+    DataflowNode:
+      type: object
+      properties:
+        object_type:
+          type: string
+          description: Type of catalog object
+          enum: [table, attribute, datasource, schema, query]
+        object_id:
+          type: integer
+          description: ID of the catalog object
+    DataflowRequest:
+      type: object
+      required:
+        - sources
+        - targets
+      properties:
+        external_id:
+          type: string
+          description: External identifier for this dataflow
+        title:
+          type: string
+          description: Display title
+        description:
+          type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataflowNode'
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataflowNode'
+    Dataflow:
+      allOf:
+        - $ref: '#/components/schemas/DataflowRequest'
+        - type: object
+          properties:
+            id:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    DataflowList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Dataflow'
+    LineageNode:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+    LineageEdge:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/LineageNode'
+        target:
+          $ref: '#/components/schemas/LineageNode'
+        dataflow_id:
+          type: integer
+    LineageGraph:
+      type: object
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageEdge'

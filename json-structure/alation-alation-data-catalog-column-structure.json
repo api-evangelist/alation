@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-data-catalog-column-structure.json",
+  "title": "Column",
+  "description": "A table column in the Alation catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": ""
+    },
+    "name": {
+      "type": "string",
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "description": ""
+    },
+    "description": {
+      "type": "string",
+      "description": ""
+    },
+    "data_type": {
+      "type": "string",
+      "description": ""
+    },
+    "table_id": {
+      "type": "int32",
+      "description": ""
+    },
+    "ds_id": {
+      "type": "int32",
+      "description": ""
+    },
+    "is_nullable": {
+      "type": "bool",
+      "description": ""
+    },
+    "is_primary_key": {
+      "type": "bool",
+      "description": ""
+    }
+  }
+}

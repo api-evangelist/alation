@@ -1,0 +1,256 @@
+rules:
+  # Authentication Rules
+  alation-auth-bearer-required:
+    description: Alation APIs must use bearer token authentication
+    message: Security scheme must include BearerToken
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: BearerToken
+      function: truthy
+
+  alation-global-security-defined:
+    description: Global security must be defined
+    message: Top-level security must reference BearerToken
+    severity: error
+    given: "$.security[*]"
+    then:
+      field: BearerToken
+      function: defined
+
+  # Info Rules
+  alation-info-title:
+    description: API title must be present
+    message: Info object must have a title
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  alation-info-description:
+    description: API description must be present
+    message: Info object must have a description
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  alation-info-version:
+    description: API version must be present
+    message: Info object must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  # Path Rules
+  alation-path-trailing-slash:
+    description: Alation API paths must end with a trailing slash
+    message: "Path '{{property}}' should end with a trailing slash"
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/$"
+
+  alation-path-no-uppercase:
+    description: Paths must be lowercase
+    message: "Path '{{property}}' must not contain uppercase letters"
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "[A-Z]"
+
+  # Operation Rules
+  alation-operation-id-required:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  alation-operation-summary-required:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  alation-operation-description-required:
+    description: All operations must have a description
+    message: Operation should have a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  alation-operation-tags-required:
+    description: All operations must have tags
+    message: Operation must have at least one tag
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  # Response Rules
+  alation-response-200-required:
+    description: GET operations must define a 200 response
+    message: GET operation must define a 200 response
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: defined
+
+  alation-response-201-post:
+    description: POST operations that create resources should return 201
+    message: POST operation should define a 201 response
+    severity: warn
+    given: "$.paths[*].post.responses"
+    then:
+      field: "201"
+      function: defined
+
+  alation-response-401-required:
+    description: APIs must document 401 Unauthorized
+    message: Operations should define a 401 response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: "401"
+      function: defined
+
+  alation-response-content-type:
+    description: Successful responses must specify content type
+    message: Response must define content type
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses[200,201].content"
+    then:
+      field: application/json
+      function: defined
+
+  # Schema Rules
+  alation-schema-description:
+    description: All schemas must have descriptions
+    message: Schema must have a description
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  alation-property-description:
+    description: Schema properties should have descriptions
+    message: Schema property should have a description
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  alation-no-inline-schemas:
+    description: Reuse schemas via $ref rather than inlining
+    message: Use $ref for complex schemas
+    severity: warn
+    given: "$.paths[*][*].responses[*].content[*].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+            - required: ["$ref"]
+            - required: ["type"]
+
+  # Parameter Rules
+  alation-parameter-description:
+    description: Parameters must have descriptions
+    message: Parameter must have a description
+    severity: warn
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  alation-pagination-limit:
+    description: List operations should support limit parameter
+    message: List operations should support a limit query parameter
+    severity: info
+    given: "$.paths[*].get.parameters[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            name:
+              enum: [limit, skip, page, page_size]
+
+  # Naming Conventions
+  alation-operation-id-camel-case:
+    description: operationId must use camelCase
+    message: "operationId '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  alation-schema-name-pascal-case:
+    description: Schema names must use PascalCase
+    message: "Schema '{{property}}' must use PascalCase"
+    severity: warn
+    given: "$.components.schemas"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]*$"
+
+  # Request Body Rules
+  alation-request-body-content-type:
+    description: Request bodies must specify application/json
+    message: Request body must define application/json content type
+    severity: error
+    given: "$.paths[*][post,put,patch].requestBody.content"
+    then:
+      field: application/json
+      function: defined
+
+  alation-request-body-schema:
+    description: Request bodies must have a schema
+    message: Request body content must define a schema
+    severity: error
+    given: "$.paths[*][post,put,patch].requestBody.content.application/json"
+    then:
+      field: schema
+      function: truthy
+
+  # Documentation Rules
+  alation-servers-required:
+    description: API must define at least one server
+    message: API must define servers
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  alation-tags-defined:
+    description: All operation tags must be defined at root level
+    message: Tags used in operations should be defined at the root tags section
+    severity: warn
+    given: "$"
+    then:
+      field: tags
+      function: truthy

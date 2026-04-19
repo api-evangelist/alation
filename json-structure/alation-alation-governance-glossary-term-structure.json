@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-governance-glossary-term-structure.json",
+  "title": "GlossaryTerm",
+  "description": "A business glossary term in the Alation catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "description": ""
+    },
+    "description": {
+      "type": "string",
+      "description": ""
+    },
+    "abbreviation": {
+      "type": "string",
+      "description": ""
+    },
+    "synonyms": {
+      "type": "array",
+      "description": ""
+    },
+    "stewards": {
+      "type": "array",
+      "description": ""
+    },
+    "url": {
+      "type": "uri",
+      "description": ""
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": ""
+    },
+    "updated_at": {
+      "type": "datetime",
+      "description": ""
+    }
+  }
+}

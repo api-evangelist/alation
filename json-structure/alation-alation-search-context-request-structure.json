@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-search-context-request-structure.json",
+  "title": "ContextRequest",
+  "description": "Request for aggregated catalog context",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": ""
+    },
+    "object_types": {
+      "type": "array",
+      "description": ""
+    },
+    "limit": {
+      "type": "int32",
+      "description": ""
+    }
+  }
+}

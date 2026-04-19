@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "sample_name",
+  "title": "Sample Title",
+  "description": "A sample description",
+  "data_type": "table",
+  "table_id": 1,
+  "ds_id": 1,
+  "is_nullable": true,
+  "is_primary_key": true
+}

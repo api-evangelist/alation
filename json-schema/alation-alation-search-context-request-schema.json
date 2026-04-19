@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-schema/alation-alation-search-context-request-schema.json",
+  "title": "ContextRequest",
+  "description": "Request for aggregated catalog context",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string"
+    },
+    "object_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limit": {
+      "type": "integer"
+    }
+  }
+}

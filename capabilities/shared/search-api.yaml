@@ -1,0 +1,140 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Alation Search API
+  description: >-
+    Full-text and AI-powered semantic search across catalog assets in the
+    Alation data intelligence platform.
+  tags:
+    - Alation
+    - Search
+    - Data Discovery
+    - AI
+    - Catalog
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALATION_HOST: ALATION_HOST
+      ALATION_TOKEN: ALATION_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: alation-search
+      baseUri: "https://{{env.ALATION_HOST}}/integration/v2"
+      description: Alation Search REST API
+      auth:
+        type: bearer
+        token: "{{env.ALATION_TOKEN}}"
+      resources:
+        - name: search
+          path: /search/
+          description: Full-text catalog search
+          operations:
+            - name: search-catalog
+              method: GET
+              description: Search all catalog objects
+              inputParameters:
+                - name: q
+                  type: string
+                  in: query
+                - name: type
+                  type: string
+                  in: query
+                - name: limit
+                  type: integer
+                  in: query
+              outputParameters:
+                - name: results
+                  type: object
+                  value: "$."
+        - name: aggregated-context
+          path: /aggregated_context/
+          description: Aggregated catalog context for AI applications
+          operations:
+            - name: get-aggregated-context
+              method: POST
+              description: Get aggregated catalog context for a natural language query
+              inputParameters:
+                - name: body
+                  type: object
+                  in: body
+              outputParameters:
+                - name: context
+                  type: object
+                  value: "$."
+        - name: articles
+          path: /article/
+          description: Catalog articles and wiki pages
+          operations:
+            - name: list-articles
+              method: GET
+              description: List catalog articles
+              outputParameters:
+                - name: articles
+                  type: array
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8103
+      namespace: alation-search-api
+      resources:
+        - path: /v1/search
+          name: search
+          operations:
+            - method: GET
+              name: search-catalog
+              description: Search the Alation catalog
+              call: "alation-search.search-catalog"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9103
+      namespace: alation-search-mcp
+      transport: http
+      tools:
+        - name: search-alation-catalog
+          description: >-
+            Search the Alation data catalog for tables, columns, data sources,
+            glossary terms, queries, and articles using full-text search.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-search.search-catalog"
+          inputParameters:
+            - name: q
+              type: string
+              description: Search query string
+            - name: type
+              type: string
+              description: Filter by object type (table, column, datasource, schema, glossary_term, query, article)
+            - name: limit
+              type: integer
+              description: Maximum number of results (default 20)
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-alation-context
+          description: >-
+            Get aggregated catalog context from Alation for a natural language query,
+            optimized for AI and LLM consumption.
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "alation-search.get-aggregated-context"
+          inputParameters:
+            - name: query
+              type: string
+              description: Natural language query for context retrieval
+            - name: object_types
+              type: array
+              description: Filter by object types
+          outputParameters:
+            - type: object
+              mapping: "$."

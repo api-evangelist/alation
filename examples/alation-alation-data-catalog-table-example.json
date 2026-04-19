@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "name": "sample_name",
+  "title": "Sample Title",
+  "description": "A sample description",
+  "schema_id": 1,
+  "ds_id": 1,
+  "table_type": "table",
+  "url": "https://your-alation-instance.com/catalog"
+}

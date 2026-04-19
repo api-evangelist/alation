@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-schema/alation-alation-data-catalog-data-source-schema.json",
+  "title": "DataSource",
+  "description": "A data source connection configured in Alation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Data source description"
+    },
+    "dbtype": {
+      "type": "string",
+      "description": "Database type"
+    },
+    "host": {
+      "type": "string",
+      "description": "Database host"
+    },
+    "port": {
+      "type": "integer",
+      "description": "Database port"
+    },
+    "is_virtual": {
+      "type": "boolean",
+      "description": "Virtual data source flag"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Catalog URL"
+    }
+  }
+}

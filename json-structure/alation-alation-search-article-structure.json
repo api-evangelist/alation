@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-search-article-structure.json",
+  "title": "Article",
+  "description": "A catalog article or wiki page",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": ""
+    },
+    "title": {
+      "type": "string",
+      "description": ""
+    },
+    "body": {
+      "type": "string",
+      "description": ""
+    },
+    "url": {
+      "type": "uri",
+      "description": ""
+    },
+    "author": {
+      "type": "int32",
+      "description": ""
+    },
+    "created_at": {
+      "type": "datetime",
+      "description": ""
+    },
+    "updated_at": {
+      "type": "datetime",
+      "description": ""
+    }
+  }
+}

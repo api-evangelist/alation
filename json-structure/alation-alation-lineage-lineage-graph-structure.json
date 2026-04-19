@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/extended/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/json-structure/alation-alation-lineage-lineage-graph-structure.json",
+  "title": "LineageGraph",
+  "description": "A graph of lineage nodes and edges",
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "description": ""
+    },
+    "edges": {
+      "type": "array",
+      "description": ""
+    }
+  }
+}

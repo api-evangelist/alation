@@ -1,0 +1,404 @@
+openapi: 3.0.3
+info:
+  title: Alation Governance API
+  description: >-
+    REST API for data governance workflows in the Alation platform, including
+    business glossary management, policy enforcement, stewardship assignments,
+    and data quality rules.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+  - url: https://{instance}/integration/v2
+    description: Alation instance
+    variables:
+      instance:
+        default: your-alation-instance.com
+security:
+  - BearerToken: []
+tags:
+  - name: Glossary Terms
+    description: Manage business glossary terms
+  - name: Policies
+    description: Manage data governance policies
+  - name: Stewardship
+    description: Manage stewardship assignments
+  - name: Data Quality
+    description: Manage data quality rules and scores
+paths:
+  /glossary_term/:
+    get:
+      operationId: listGlossaryTerms
+      summary: List glossary terms
+      description: Returns business glossary terms from the Alation catalog.
+      tags:
+        - Glossary Terms
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: search
+          in: query
+          description: Search term to filter glossary terms
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of glossary terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTermList'
+    post:
+      operationId: createGlossaryTerm
+      summary: Create a glossary term
+      description: Creates a new business glossary term.
+      tags:
+        - Glossary Terms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlossaryTermRequest'
+      responses:
+        '201':
+          description: Glossary term created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+  /glossary_term/{id}/:
+    get:
+      operationId: getGlossaryTerm
+      summary: Get a glossary term
+      description: Returns details for a specific glossary term.
+      tags:
+        - Glossary Terms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Glossary term details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+    put:
+      operationId: updateGlossaryTerm
+      summary: Update a glossary term
+      description: Updates an existing glossary term.
+      tags:
+        - Glossary Terms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlossaryTermRequest'
+      responses:
+        '200':
+          description: Glossary term updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+    delete:
+      operationId: deleteGlossaryTerm
+      summary: Delete a glossary term
+      description: Deletes a glossary term.
+      tags:
+        - Glossary Terms
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted successfully
+  /policy/:
+    get:
+      operationId: listPolicies
+      summary: List policies
+      description: Returns governance policies from the Alation catalog.
+      tags:
+        - Policies
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyList'
+    post:
+      operationId: createPolicy
+      summary: Create a policy
+      description: Creates a new governance policy.
+      tags:
+        - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRequest'
+      responses:
+        '201':
+          description: Policy created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+  /policy/{id}/:
+    get:
+      operationId: getPolicy
+      summary: Get a policy
+      tags:
+        - Policies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+  /data_quality/rule/:
+    get:
+      operationId: listDataQualityRules
+      summary: List data quality rules
+      description: Returns data quality rules defined in the Alation catalog.
+      tags:
+        - Data Quality
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+        - name: skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of data quality rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityRuleList'
+    post:
+      operationId: createDataQualityRule
+      summary: Create a data quality rule
+      description: Creates a new data quality rule.
+      tags:
+        - Data Quality
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataQualityRuleRequest'
+      responses:
+        '201':
+          description: Data quality rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityRule'
+  /data_quality/score/:
+    get:
+      operationId: getDataQualityScores
+      summary: Get data quality scores
+      description: Returns data quality scores for catalog objects.
+      tags:
+        - Data Quality
+      parameters:
+        - name: object_type
+          in: query
+          schema:
+            type: string
+        - name: object_id
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Data quality scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityScoreList'
+components:
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+  schemas:
+    GlossaryTermRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: Term name
+        description:
+          type: string
+          description: Term definition
+        abbreviation:
+          type: string
+        synonyms:
+          type: array
+          items:
+            type: string
+        stewards:
+          type: array
+          items:
+            type: integer
+          description: User IDs of assigned stewards
+    GlossaryTerm:
+      allOf:
+        - $ref: '#/components/schemas/GlossaryTermRequest'
+        - type: object
+          properties:
+            id:
+              type: integer
+            url:
+              type: string
+              format: uri
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    GlossaryTermList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GlossaryTerm'
+    PolicyRequest:
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        policy_type:
+          type: string
+          enum: [data_protection, retention, access_control, quality]
+        stewards:
+          type: array
+          items:
+            type: integer
+    Policy:
+      allOf:
+        - $ref: '#/components/schemas/PolicyRequest'
+        - type: object
+          properties:
+            id:
+              type: integer
+            url:
+              type: string
+              format: uri
+            created_at:
+              type: string
+              format: date-time
+    PolicyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy'
+    DataQualityRuleRequest:
+      type: object
+      required:
+        - title
+        - rule_type
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        rule_type:
+          type: string
+          enum: [accuracy, completeness, consistency, timeliness, uniqueness, validity, custom]
+        object_type:
+          type: string
+        object_id:
+          type: integer
+    DataQualityRule:
+      allOf:
+        - $ref: '#/components/schemas/DataQualityRuleRequest'
+        - type: object
+          properties:
+            id:
+              type: integer
+            created_at:
+              type: string
+              format: date-time
+    DataQualityRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityRule'
+    DataQualityScore:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        overall_score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        dimensions:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+        last_evaluated:
+          type: string
+          format: date-time
+    DataQualityScoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityScore'

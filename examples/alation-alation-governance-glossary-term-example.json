@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "title": "Sample Title",
+  "description": "A sample description",
+  "abbreviation": "KPI",
+  "synonyms": [],
+  "stewards": [],
+  "url": "https://your-alation-instance.com/catalog",
+  "created_at": "2026-04-19T12:00:00Z",
+  "updated_at": "2026-04-19T12:00:00Z"
+}

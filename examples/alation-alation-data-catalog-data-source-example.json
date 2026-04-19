@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "title": "Sample Title",
+  "description": "A sample description",
+  "dbtype": "table",
+  "host": "db.example.com",
+  "port": 5432,
+  "is_virtual": true,
+  "url": "https://your-alation-instance.com/catalog"
+}

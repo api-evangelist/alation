@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "title": "Sample Title",
+  "body": "Article content goes here.",
+  "url": "https://your-alation-instance.com/catalog",
+  "author": 42,
+  "created_at": "2026-04-19T12:00:00Z",
+  "updated_at": "2026-04-19T12:00:00Z"
+}

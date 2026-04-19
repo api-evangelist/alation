@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "sample_name",
+  "title": "Sample Title",
+  "description": "A sample description",
+  "ds_id": 1,
+  "url": "https://your-alation-instance.com/catalog"
+}

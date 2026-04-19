@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "object_type": "table",
+  "title": "Sample Title",
+  "description": "A sample description",
+  "url": "https://your-alation-instance.com/catalog",
+  "score": 95.5,
+  "breadcrumb": "datasource > schema > table_name"
+}
