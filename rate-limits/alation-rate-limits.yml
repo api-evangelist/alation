@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Alation
 providerId: alation
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Data Catalog
   - Data Governance
@@ -13,95 +14,37 @@ tags:
   - Data Quality
   - Business Glossary
   - Metadata Management
-  - AI
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Alation API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Alation operates as a single-tenant SaaS or on-prem deployment; rate limits are tied to the
+  capacity of the customer's tenant rather than a published per-tier policy. Alation's public developer
+  documentation does not publish per-second/per-minute API throughput numbers. Behavior is governed by
+  authentication tokens (refresh + access tokens) and tenant resource limits.
+sources:
+  - https://developer.alation.com/dev/reference/
+notes: Public docs do not publish concrete TPS/RPM numbers. Alation tenants enforce capacity-based throttling;
+  contact Alation support for tenant-specific guidance.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  unauthorized: 401
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Alation Data Catalog API
-      - Alation Lineage API
-      - Alation Governance API
-      - Alation Search API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Alation Data Catalog API
-      - Alation Lineage API
-      - Alation Governance API
-      - Alation Search API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Alation Data Catalog API
-      - Alation Lineage API
-      - Alation Governance API
-      - Alation Search API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Alation Data Catalog API
-      - Alation Lineage API
-      - Alation Governance API
-      - Alation Search API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Alation Data Catalog API
-      - Alation Lineage API
-      - Alation Governance API
-      - Alation Search API
+  - name: Tenant Capacity
+    scope: tenant
+    metric: varies
+    limit: dimensioned by tenant size and deployment topology - not publicly documented
+  - name: Per-Token Concurrency
+    scope: token
+    metric: concurrent_requests
+    limit: tenant-specific - rotate access tokens via the refresh-token flow as documented in the developer
+      portal
 policies:
+  - name: Token Lifecycle
+    description: Use refresh tokens to mint short-lived access tokens. SSO-backed tenants must create refresh
+      tokens via the Alation UI rather than the API.
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Implement exponential backoff with jitter on 429 responses; honor Retry-After if returned.
+  - name: Capacity Planning
+    description: For sustained high-volume metadata sync, work with Alation's customer success team to
+      right-size the tenant.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
