@@ -300,6 +300,53 @@ common:
         description: >-
           Integration with Apache Atlas for federated metadata management
           across heterogeneous data platforms.
+  - type: Integrations
+    url: https://www.alation.com/partners/
+integrations:
+  - name: headerLogo
+  - name: hamburgerMenu
+  - name: close_btn
+  - name: chevron
+  - name: Hammer and screwdriver tools icons
+  - name: Navigation Icon Search
+  - name: Navigation Icon Data Catalog
+  - name: Navigation Icon Data Governance
+  - name: Chat with Your Data grey
+  - name: Chat with Your Data orange
+  - name: Navigation Icon Data Lineage
+  - name: Navigation Icon Alation Analytics
+  - name: Agent Builder Grey
+  - name: Agent Builder Orange
+  - name: Navigation Icon Active Metadata Graph
+  - name: Navigation Icon Workflow Automation
+  - name: Navigation Icon AI Powered Allie
+  - name: Navigation Icon Open Connectors Framework
+  - name: Navigation Icon Open Data Quality Framework
+  - name: Navigation
+  - name: VenutreBeat
+  - name: 'Alation Article Publisher: TechCrunch'
+  - name: Forbes Magazine
+  - name: 'Alation Partner: Snowflake'
+  - name: 'Alation Partner: AWS'
+  - name: 'Alation Partner: Databricks'
+  - name: 'Alation Connector: Salesforce'
+  - name: down arrow
+  - name: up arrow
+  - name: Alation partners include technology partners
+  - name: Alation partners include system integrators
+  - name: Alation partners include resellers
+  - name: Alation
+  - name: linkedin
+  - name: youtube
+  - name: X(Twitter) Logo Reversed 50x50 SVG
+  - name: facebook
+  - name: Podcast-icon-Apple-svg
+  - name: Podcast-icon-Spotify
+  - name: HIPAA badge
+  - name: ISO 27001 Certified badge
+  - name: ISO 27701 Certified
+  - name: AICPA SOC 2 badge
+  - name: AICPA SOC badge
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
