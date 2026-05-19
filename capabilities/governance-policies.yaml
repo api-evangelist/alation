@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Governance API — Policies
+  description: 'Alation Governance API — Policies. 3 operations. Lead operation: List policies. Self-contained Naftiko capability
+    covering one Alation business surface.'
+  tags:
+  - Alation
+  - Policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: governance-policies
+    baseUri: https://{instance}/integration/v2
+    description: Alation Governance API — Policies business capability. Self-contained, no shared references.
+    resources:
+    - name: policy
+      path: /policy/
+      operations:
+      - name: listpolicies
+        method: GET
+        description: List policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: skip
+          in: query
+          type: integer
+      - name: createpolicy
+        method: POST
+        description: Create a policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: policy-id
+      path: /policy/{id}/
+      operations:
+      - name: getpolicy
+        method: GET
+        description: Get a policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: governance-policies-rest
+    port: 8080
+    description: REST adapter for Alation Governance API — Policies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/policy
+      name: policy
+      description: REST surface for policy.
+      operations:
+      - method: GET
+        name: listpolicies
+        description: List policies
+        call: governance-policies.listpolicies
+        with:
+          limit: rest.limit
+          skip: rest.skip
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpolicy
+        description: Create a policy
+        call: governance-policies.createpolicy
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/policy/{id}
+      name: policy-id
+      description: REST surface for policy-id.
+      operations:
+      - method: GET
+        name: getpolicy
+        description: Get a policy
+        call: governance-policies.getpolicy
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: governance-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Governance API — Policies. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-policies
+      description: List policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: governance-policies.listpolicies
+      with:
+        limit: tools.limit
+        skip: tools.skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-policy
+      description: Create a policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: governance-policies.createpolicy
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-policy
+      description: Get a policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: governance-policies.getpolicy
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

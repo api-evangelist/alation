@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Search API — Aggregated Context
+  description: 'Alation Search API — Aggregated Context. 1 operations. Lead operation: Get aggregated context. Self-contained
+    Naftiko capability covering one Alation business surface.'
+  tags:
+  - Alation
+  - Aggregated Context
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: search-aggregated-context
+    baseUri: https://{instance}/integration/v2
+    description: Alation Search API — Aggregated Context business capability. Self-contained, no shared references.
+    resources:
+    - name: aggregated_context
+      path: /aggregated_context/
+      operations:
+      - name: getaggregatedcontext
+        method: POST
+        description: Get aggregated context
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: search-aggregated-context-rest
+    port: 8080
+    description: REST adapter for Alation Search API — Aggregated Context. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/aggregated-context
+      name: aggregated-context
+      description: REST surface for aggregated_context.
+      operations:
+      - method: POST
+        name: getaggregatedcontext
+        description: Get aggregated context
+        call: search-aggregated-context.getaggregatedcontext
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: search-aggregated-context-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Search API — Aggregated Context. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-aggregated-context
+      description: Get aggregated context
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: search-aggregated-context.getaggregatedcontext
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,163 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Governance API — Data Quality
+  description: 'Alation Governance API — Data Quality. 3 operations. Lead operation: List data quality rules. Self-contained
+    Naftiko capability covering one Alation business surface.'
+  tags:
+  - Alation
+  - Data Quality
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: governance-data-quality
+    baseUri: https://{instance}/integration/v2
+    description: Alation Governance API — Data Quality business capability. Self-contained, no shared references.
+    resources:
+    - name: data_quality-rule
+      path: /data_quality/rule/
+      operations:
+      - name: listdataqualityrules
+        method: GET
+        description: List data quality rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: skip
+          in: query
+          type: integer
+      - name: createdataqualityrule
+        method: POST
+        description: Create a data quality rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: data_quality-score
+      path: /data_quality/score/
+      operations:
+      - name: getdataqualityscores
+        method: GET
+        description: Get data quality scores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: object_type
+          in: query
+          type: string
+        - name: object_id
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: governance-data-quality-rest
+    port: 8080
+    description: REST adapter for Alation Governance API — Data Quality. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/data-quality/rule
+      name: data-quality-rule
+      description: REST surface for data_quality-rule.
+      operations:
+      - method: GET
+        name: listdataqualityrules
+        description: List data quality rules
+        call: governance-data-quality.listdataqualityrules
+        with:
+          limit: rest.limit
+          skip: rest.skip
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdataqualityrule
+        description: Create a data quality rule
+        call: governance-data-quality.createdataqualityrule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-quality/score
+      name: data-quality-score
+      description: REST surface for data_quality-score.
+      operations:
+      - method: GET
+        name: getdataqualityscores
+        description: Get data quality scores
+        call: governance-data-quality.getdataqualityscores
+        with:
+          object_type: rest.object_type
+          object_id: rest.object_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: governance-data-quality-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Governance API — Data Quality. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-data-quality-rules
+      description: List data quality rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: governance-data-quality.listdataqualityrules
+      with:
+        limit: tools.limit
+        skip: tools.skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-data-quality-rule
+      description: Create a data quality rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: governance-data-quality.createdataqualityrule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-quality-scores
+      description: Get data quality scores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: governance-data-quality.getdataqualityscores
+      with:
+        object_type: tools.object_type
+        object_id: tools.object_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Lineage API — Lineage
+  description: 'Alation Lineage API — Lineage. 1 operations. Lead operation: Get lineage for an object. Self-contained Naftiko
+    capability covering one Alation business surface.'
+  tags:
+  - Alation
+  - Lineage
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: lineage-lineage
+    baseUri: https://{instance}/api/v1
+    description: Alation Lineage API — Lineage business capability. Self-contained, no shared references.
+    resources:
+    - name: lineage
+      path: /lineage/
+      operations:
+      - name: getlineage
+        method: GET
+        description: Get lineage for an object
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: object_type
+          in: query
+          type: string
+          description: Type of catalog object (table, attribute, etc.)
+          required: true
+        - name: object_id
+          in: query
+          type: integer
+          description: ID of the catalog object
+          required: true
+        - name: direction
+          in: query
+          type: string
+          description: Lineage direction
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: lineage-lineage-rest
+    port: 8080
+    description: REST adapter for Alation Lineage API — Lineage. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/lineage
+      name: lineage
+      description: REST surface for lineage.
+      operations:
+      - method: GET
+        name: getlineage
+        description: Get lineage for an object
+        call: lineage-lineage.getlineage
+        with:
+          object_type: rest.object_type
+          object_id: rest.object_id
+          direction: rest.direction
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: lineage-lineage-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Lineage API — Lineage. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-lineage-object
+      description: Get lineage for an object
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: lineage-lineage.getlineage
+      with:
+        object_type: tools.object_type
+        object_id: tools.object_id
+        direction: tools.direction
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,187 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Search API — Search
+  description: 'Alation Search API — Search. 3 operations. Lead operation: List articles. Self-contained Naftiko capability
+    covering one Alation business surface.'
+  tags:
+  - Alation
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: search-search
+    baseUri: https://{instance}/integration/v2
+    description: Alation Search API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: article
+      path: /article/
+      operations:
+      - name: listarticles
+        method: GET
+        description: List articles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: skip
+          in: query
+          type: integer
+        - name: search
+          in: query
+          type: string
+    - name: article-id
+      path: /article/{id}/
+      operations:
+      - name: getarticle
+        method: GET
+        description: Get an article
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    - name: search
+      path: /search/
+      operations:
+      - name: searchcatalog
+        method: GET
+        description: Search the catalog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search query string
+          required: true
+        - name: type
+          in: query
+          type: string
+          description: Filter by object type
+        - name: limit
+          in: query
+          type: integer
+        - name: skip
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: search-search-rest
+    port: 8080
+    description: REST adapter for Alation Search API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/article
+      name: article
+      description: REST surface for article.
+      operations:
+      - method: GET
+        name: listarticles
+        description: List articles
+        call: search-search.listarticles
+        with:
+          limit: rest.limit
+          skip: rest.skip
+          search: rest.search
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/article/{id}
+      name: article-id
+      description: REST surface for article-id.
+      operations:
+      - method: GET
+        name: getarticle
+        description: Get an article
+        call: search-search.getarticle
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search
+      name: search
+      description: REST surface for search.
+      operations:
+      - method: GET
+        name: searchcatalog
+        description: Search the catalog
+        call: search-search.searchcatalog
+        with:
+          q: rest.q
+          type: rest.type
+          limit: rest.limit
+          skip: rest.skip
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: search-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Search API — Search. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-articles
+      description: List articles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: search-search.listarticles
+      with:
+        limit: tools.limit
+        skip: tools.skip
+        search: tools.search
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-article
+      description: Get an article
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: search-search.getarticle
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-catalog
+      description: Search the catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: search-search.searchcatalog
+      with:
+        q: tools.q
+        type: tools.type
+        limit: tools.limit
+        skip: tools.skip
+      outputParameters:
+      - type: object
+        mapping: $.

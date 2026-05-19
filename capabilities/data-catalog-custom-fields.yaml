@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alation Data Catalog API — Custom Fields
+  description: 'Alation Data Catalog API — Custom Fields. 2 operations. Lead operation: List custom field values. Self-contained
+    Naftiko capability covering one Alation business surface.'
+  tags:
+  - Alation
+  - Custom Fields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ALATION_API_KEY: ALATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-catalog-custom-fields
+    baseUri: https://{instance}/integration/v2
+    description: Alation Data Catalog API — Custom Fields business capability. Self-contained, no shared references.
+    resources:
+    - name: custom_field_value
+      path: /custom_field_value/
+      operations:
+      - name: listcustomfieldvalues
+        method: GET
+        description: List custom field values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: object_type
+          in: query
+          type: string
+          description: Type of catalog object (table, column, datasource, etc.)
+        - name: object_id
+          in: query
+          type: integer
+          description: ID of the catalog object
+      - name: updatecustomfieldvalues
+        method: PUT
+        description: Update custom field values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ALATION_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: data-catalog-custom-fields-rest
+    port: 8080
+    description: REST adapter for Alation Data Catalog API — Custom Fields. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/custom-field-value
+      name: custom-field-value
+      description: REST surface for custom_field_value.
+      operations:
+      - method: GET
+        name: listcustomfieldvalues
+        description: List custom field values
+        call: data-catalog-custom-fields.listcustomfieldvalues
+        with:
+          object_type: rest.object_type
+          object_id: rest.object_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomfieldvalues
+        description: Update custom field values
+        call: data-catalog-custom-fields.updatecustomfieldvalues
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-catalog-custom-fields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Alation Data Catalog API — Custom Fields. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-custom-field-values
+      description: List custom field values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-catalog-custom-fields.listcustomfieldvalues
+      with:
+        object_type: tools.object_type
+        object_id: tools.object_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-custom-field-values
+      description: Update custom field values
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: data-catalog-custom-fields.updatecustomfieldvalues
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
