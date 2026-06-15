@@ -1,0 +1,967 @@
+"""
+Alation GraphQL Schema
+Derived from the Alation REST API covering data catalog, lineage, governance, and search.
+"""
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# ─── Root Types ──────────────────────────────────────────────────────────────
+
+type Query {
+  # Data Sources
+  dataSource(id: ID!): DataSource
+  dataSources(filter: DataSourceFilter, pagination: PaginationInput): DataSourceConnection
+
+  # Schemas
+  schema(id: ID!): CatalogSchema
+  schemas(dataSourceId: ID!, filter: SchemaFilter, pagination: PaginationInput): SchemaConnection
+
+  # Tables
+  table(id: ID!): Table
+  tables(schemaId: ID, filter: TableFilter, pagination: PaginationInput): TableConnection
+
+  # Columns
+  column(id: ID!): Column
+  columns(tableId: ID!, filter: ColumnFilter, pagination: PaginationInput): ColumnConnection
+
+  # Queries / BI Reports
+  query(id: ID!): SavedQuery
+  queries(filter: QueryFilter, pagination: PaginationInput): QueryConnection
+
+  # Articles
+  article(id: ID!): Article
+  articles(filter: ArticleFilter, pagination: PaginationInput): ArticleConnection
+
+  # Lineage
+  lineage(id: ID!): LineageGraph
+  upstreamLineage(objectId: ID!, objectType: CatalogObjectType!, depth: Int): LineageGraph
+  downstreamLineage(objectId: ID!, objectType: CatalogObjectType!, depth: Int): LineageGraph
+  dataflow(id: ID!): Dataflow
+  dataflows(filter: DataflowFilter, pagination: PaginationInput): DataflowConnection
+
+  # Governance
+  glossaryTerm(id: ID!): GlossaryTerm
+  glossaryTerms(filter: GlossaryTermFilter, pagination: PaginationInput): GlossaryTermConnection
+  policy(id: ID!): GovernancePolicy
+  policies(filter: PolicyFilter, pagination: PaginationInput): PolicyConnection
+  dataQualityRule(id: ID!): DataQualityRule
+  dataQualityRules(filter: DataQualityRuleFilter, pagination: PaginationInput): DataQualityRuleConnection
+  dataQualityScore(objectId: ID!, objectType: CatalogObjectType!): DataQualityScore
+
+  # Search
+  search(query: String!, filter: SearchFilter, pagination: PaginationInput): SearchResultConnection
+  aggregatedContext(query: String!, maxResults: Int): AggregatedContext
+
+  # Users and Groups
+  user(id: ID!): User
+  users(filter: UserFilter, pagination: PaginationInput): UserConnection
+  group(id: ID!): UserGroup
+  groups(filter: GroupFilter, pagination: PaginationInput): GroupConnection
+
+  # Custom Fields
+  customField(id: ID!): CustomField
+  customFields(objectType: CatalogObjectType, pagination: PaginationInput): CustomFieldConnection
+
+  # Flags / Trust
+  flag(id: ID!): Flag
+  flags(objectId: ID!, objectType: CatalogObjectType!): [Flag!]!
+
+  # Domains
+  domain(id: ID!): Domain
+  domains(pagination: PaginationInput): DomainConnection
+
+  # Tags
+  tag(id: ID!): Tag
+  tags(pagination: PaginationInput): TagConnection
+}
+
+type Mutation {
+  # Data Sources
+  createDataSource(input: CreateDataSourceInput!): DataSource!
+  updateDataSource(id: ID!, input: UpdateDataSourceInput!): DataSource!
+  deleteDataSource(id: ID!): DeleteResult!
+
+  # Tables
+  updateTable(id: ID!, input: UpdateTableInput!): Table!
+  batchUpdateTables(inputs: [BatchUpdateTableInput!]!): [Table!]!
+
+  # Columns
+  updateColumn(id: ID!, input: UpdateColumnInput!): Column!
+  batchUpdateColumns(inputs: [BatchUpdateColumnInput!]!): [Column!]!
+
+  # Articles
+  createArticle(input: CreateArticleInput!): Article!
+  updateArticle(id: ID!, input: UpdateArticleInput!): Article!
+  deleteArticle(id: ID!): DeleteResult!
+
+  # Lineage
+  createDataflow(input: CreateDataflowInput!): Dataflow!
+  updateDataflow(id: ID!, input: UpdateDataflowInput!): Dataflow!
+  deleteDataflow(id: ID!): DeleteResult!
+
+  # Glossary
+  createGlossaryTerm(input: CreateGlossaryTermInput!): GlossaryTerm!
+  updateGlossaryTerm(id: ID!, input: UpdateGlossaryTermInput!): GlossaryTerm!
+  deleteGlossaryTerm(id: ID!): DeleteResult!
+
+  # Policies
+  createPolicy(input: CreatePolicyInput!): GovernancePolicy!
+  updatePolicy(id: ID!, input: UpdatePolicyInput!): GovernancePolicy!
+  deletePolicy(id: ID!): DeleteResult!
+
+  # Data Quality Rules
+  createDataQualityRule(input: CreateDataQualityRuleInput!): DataQualityRule!
+  updateDataQualityRule(id: ID!, input: UpdateDataQualityRuleInput!): DataQualityRule!
+  deleteDataQualityRule(id: ID!): DeleteResult!
+  postDataQualityScore(input: PostDataQualityScoreInput!): DataQualityScore!
+
+  # Flags / Endorsements
+  endorseObject(objectId: ID!, objectType: CatalogObjectType!): Flag!
+  warnObject(objectId: ID!, objectType: CatalogObjectType!): Flag!
+  deprecateObject(objectId: ID!, objectType: CatalogObjectType!): Flag!
+  removeFlag(id: ID!): DeleteResult!
+
+  # Custom Field Values
+  updateCustomFieldValue(input: UpdateCustomFieldValueInput!): CustomFieldValue!
+  batchUpdateCustomFieldValues(inputs: [UpdateCustomFieldValueInput!]!): [CustomFieldValue!]!
+
+  # Tags
+  addTagToObject(tagId: ID!, objectId: ID!, objectType: CatalogObjectType!): TagAssignment!
+  removeTagFromObject(tagId: ID!, objectId: ID!, objectType: CatalogObjectType!): DeleteResult!
+}
+
+# ─── Data Source Types ────────────────────────────────────────────────────────
+
+type DataSource {
+  id: ID!
+  name: String!
+  dbtype: String!
+  description: String
+  title: String
+  isVirtual: Boolean!
+  isSample: Boolean!
+  host: String
+  port: Int
+  schemas: SchemaConnection
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  stewards: [User!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DataSourceConnection {
+  nodes: [DataSource!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input DataSourceFilter {
+  dbtype: String
+  name: String
+  isVirtual: Boolean
+}
+
+input CreateDataSourceInput {
+  name: String!
+  dbtype: String!
+  description: String
+  title: String
+  host: String
+  port: Int
+  isVirtual: Boolean
+}
+
+input UpdateDataSourceInput {
+  name: String
+  description: String
+  title: String
+  host: String
+  port: Int
+}
+
+# ─── Schema Types ─────────────────────────────────────────────────────────────
+
+type CatalogSchema {
+  id: ID!
+  name: String!
+  title: String
+  description: String
+  dataSource: DataSource!
+  tables: TableConnection
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  stewards: [User!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SchemaConnection {
+  nodes: [CatalogSchema!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input SchemaFilter {
+  name: String
+}
+
+# ─── Table Types ──────────────────────────────────────────────────────────────
+
+type Table {
+  id: ID!
+  name: String!
+  title: String
+  description: String
+  tableType: TableType!
+  schema: CatalogSchema!
+  dataSource: DataSource!
+  columns: ColumnConnection
+  rowCount: Int
+  sizeBytes: Int
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  stewards: [User!]!
+  domains: [Domain!]!
+  glossaryTerms: [GlossaryTerm!]!
+  lineageUpstream: LineageGraph
+  lineageDownstream: LineageGraph
+  dataQualityScore: DataQualityScore
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TableConnection {
+  nodes: [Table!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+enum TableType {
+  TABLE
+  VIEW
+  EXTERNAL
+  MATERIALIZED_VIEW
+  WILDCARD
+}
+
+input TableFilter {
+  name: String
+  tableType: TableType
+  hasDescription: Boolean
+}
+
+input UpdateTableInput {
+  title: String
+  description: String
+  stewardIds: [ID!]
+}
+
+input BatchUpdateTableInput {
+  id: ID!
+  title: String
+  description: String
+  stewardIds: [ID!]
+}
+
+# ─── Column Types ─────────────────────────────────────────────────────────────
+
+type Column {
+  id: ID!
+  name: String!
+  title: String
+  description: String
+  columnType: String!
+  position: Int
+  isPrimaryKey: Boolean!
+  isNullable: Boolean!
+  table: Table!
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  stewards: [User!]!
+  glossaryTerms: [GlossaryTerm!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ColumnConnection {
+  nodes: [Column!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input ColumnFilter {
+  name: String
+  columnType: String
+  isPrimaryKey: Boolean
+}
+
+input UpdateColumnInput {
+  title: String
+  description: String
+  stewardIds: [ID!]
+}
+
+input BatchUpdateColumnInput {
+  id: ID!
+  title: String
+  description: String
+  stewardIds: [ID!]
+}
+
+# ─── Saved Query Types ────────────────────────────────────────────────────────
+
+type SavedQuery {
+  id: ID!
+  title: String!
+  description: String
+  content: String!
+  author: User!
+  dataSource: DataSource
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type QueryConnection {
+  nodes: [SavedQuery!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input QueryFilter {
+  title: String
+  authorId: ID
+  dataSourceId: ID
+}
+
+# ─── Article Types ────────────────────────────────────────────────────────────
+
+type Article {
+  id: ID!
+  title: String!
+  body: String
+  excerpt: String
+  author: User!
+  template: ArticleTemplate
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  relatedObjects: [CatalogObject!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ArticleConnection {
+  nodes: [Article!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ArticleTemplate {
+  id: ID!
+  name: String!
+  fields: [ArticleTemplateField!]!
+}
+
+type ArticleTemplateField {
+  id: ID!
+  name: String!
+  fieldType: String!
+  required: Boolean!
+}
+
+input ArticleFilter {
+  title: String
+  authorId: ID
+  templateId: ID
+}
+
+input CreateArticleInput {
+  title: String!
+  body: String
+  templateId: ID
+  tagIds: [ID!]
+  relatedObjectIds: [ID!]
+}
+
+input UpdateArticleInput {
+  title: String
+  body: String
+  tagIds: [ID!]
+  relatedObjectIds: [ID!]
+}
+
+# ─── Lineage Types ────────────────────────────────────────────────────────────
+
+type LineageGraph {
+  nodes: [LineageNode!]!
+  edges: [LineageEdge!]!
+}
+
+type LineageNode {
+  id: ID!
+  objectId: ID!
+  objectType: CatalogObjectType!
+  name: String!
+  qualifiedName: String
+}
+
+type LineageEdge {
+  id: ID!
+  source: LineageNode!
+  target: LineageNode!
+  dataflow: Dataflow
+}
+
+type Dataflow {
+  id: ID!
+  name: String!
+  description: String
+  sources: [DataflowEndpoint!]!
+  targets: [DataflowEndpoint!]!
+  externalId: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DataflowEndpoint {
+  id: ID!
+  objectId: ID!
+  objectType: CatalogObjectType!
+  name: String
+}
+
+type DataflowConnection {
+  nodes: [Dataflow!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input DataflowFilter {
+  name: String
+  externalId: String
+}
+
+input CreateDataflowInput {
+  name: String!
+  description: String
+  sources: [DataflowEndpointInput!]!
+  targets: [DataflowEndpointInput!]!
+  externalId: String
+}
+
+input UpdateDataflowInput {
+  name: String
+  description: String
+  sources: [DataflowEndpointInput!]
+  targets: [DataflowEndpointInput!]
+}
+
+input DataflowEndpointInput {
+  objectId: ID!
+  objectType: CatalogObjectType!
+}
+
+# ─── Governance Types ─────────────────────────────────────────────────────────
+
+type GlossaryTerm {
+  id: ID!
+  name: String!
+  definition: String
+  abbreviations: [String!]!
+  synonyms: [String!]!
+  stewards: [User!]!
+  relatedTerms: [GlossaryTerm!]!
+  appliedObjects: [CatalogObject!]!
+  customFieldValues: [CustomFieldValue!]!
+  flags: [Flag!]!
+  tags: [Tag!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GlossaryTermConnection {
+  nodes: [GlossaryTerm!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input GlossaryTermFilter {
+  name: String
+  stewardId: ID
+}
+
+input CreateGlossaryTermInput {
+  name: String!
+  definition: String
+  abbreviations: [String!]
+  synonyms: [String!]
+  stewardIds: [ID!]
+  relatedTermIds: [ID!]
+}
+
+input UpdateGlossaryTermInput {
+  name: String
+  definition: String
+  abbreviations: [String!]
+  synonyms: [String!]
+  stewardIds: [ID!]
+  relatedTermIds: [ID!]
+}
+
+type GovernancePolicy {
+  id: ID!
+  name: String!
+  description: String
+  policyType: PolicyType!
+  status: PolicyStatus!
+  stewards: [User!]!
+  appliedObjects: [CatalogObject!]!
+  customFieldValues: [CustomFieldValue!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PolicyConnection {
+  nodes: [GovernancePolicy!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+enum PolicyType {
+  DATA_PROTECTION
+  DATA_RETENTION
+  ACCESS_CONTROL
+  DATA_QUALITY
+  CUSTOM
+}
+
+enum PolicyStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+input PolicyFilter {
+  policyType: PolicyType
+  status: PolicyStatus
+  stewardId: ID
+}
+
+input CreatePolicyInput {
+  name: String!
+  description: String
+  policyType: PolicyType!
+  stewardIds: [ID!]
+}
+
+input UpdatePolicyInput {
+  name: String
+  description: String
+  status: PolicyStatus
+  stewardIds: [ID!]
+}
+
+type DataQualityRule {
+  id: ID!
+  name: String!
+  description: String
+  dimension: DataQualityDimension!
+  expression: String
+  threshold: Float
+  appliedObjects: [CatalogObject!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DataQualityRuleConnection {
+  nodes: [DataQualityRule!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+enum DataQualityDimension {
+  ACCURACY
+  COMPLETENESS
+  CONSISTENCY
+  TIMELINESS
+  UNIQUENESS
+  VALIDITY
+  CUSTOM
+}
+
+input DataQualityRuleFilter {
+  dimension: DataQualityDimension
+  name: String
+}
+
+input CreateDataQualityRuleInput {
+  name: String!
+  description: String
+  dimension: DataQualityDimension!
+  expression: String
+  threshold: Float
+}
+
+input UpdateDataQualityRuleInput {
+  name: String
+  description: String
+  dimension: DataQualityDimension
+  expression: String
+  threshold: Float
+}
+
+type DataQualityScore {
+  objectId: ID!
+  objectType: CatalogObjectType!
+  overallScore: Float!
+  dimensionScores: [DimensionScore!]!
+  lastEvaluatedAt: DateTime
+  status: DataQualityStatus!
+}
+
+type DimensionScore {
+  dimension: DataQualityDimension!
+  score: Float!
+  ruleCount: Int!
+  passingRules: Int!
+}
+
+enum DataQualityStatus {
+  PASSING
+  WARNING
+  FAILING
+  NOT_EVALUATED
+}
+
+input PostDataQualityScoreInput {
+  objectId: ID!
+  objectType: CatalogObjectType!
+  overallScore: Float!
+  dimensionScores: [DimensionScoreInput!]
+}
+
+input DimensionScoreInput {
+  dimension: DataQualityDimension!
+  score: Float!
+  ruleCount: Int
+  passingRules: Int
+}
+
+# ─── Search Types ─────────────────────────────────────────────────────────────
+
+type SearchResult {
+  id: ID!
+  objectId: ID!
+  objectType: CatalogObjectType!
+  title: String!
+  description: String
+  score: Float
+  flags: [Flag!]!
+  tags: [Tag!]!
+  dataSource: DataSource
+  breadcrumb: [BreadcrumbItem!]!
+}
+
+type SearchResultConnection {
+  nodes: [SearchResult!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BreadcrumbItem {
+  id: ID!
+  name: String!
+  objectType: CatalogObjectType!
+}
+
+input SearchFilter {
+  objectTypes: [CatalogObjectType!]
+  dataSourceIds: [ID!]
+  tagIds: [ID!]
+  domainIds: [ID!]
+  flagType: FlagType
+  stewardId: ID
+}
+
+type AggregatedContext {
+  query: String!
+  results: [AggregatedContextResult!]!
+  totalTokens: Int
+}
+
+type AggregatedContextResult {
+  objectId: ID!
+  objectType: CatalogObjectType!
+  title: String!
+  context: String!
+  relevanceScore: Float
+}
+
+# ─── User and Group Types ─────────────────────────────────────────────────────
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  displayName: String
+  firstName: String
+  lastName: String
+  title: String
+  role: UserRole!
+  groups: [UserGroup!]!
+  stewardedObjects: [CatalogObject!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserConnection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+enum UserRole {
+  ADMIN
+  CATALOG_ADMIN
+  STEWARD
+  ANALYST
+  VIEWER
+  SOURCE_ADMIN
+}
+
+input UserFilter {
+  username: String
+  email: String
+  role: UserRole
+}
+
+type UserGroup {
+  id: ID!
+  name: String!
+  description: String
+  members: [User!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type GroupConnection {
+  nodes: [UserGroup!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+input GroupFilter {
+  name: String
+}
+
+# ─── Custom Field Types ───────────────────────────────────────────────────────
+
+type CustomField {
+  id: ID!
+  name: String!
+  fieldType: CustomFieldType!
+  allowedObjectTypes: [CatalogObjectType!]!
+  options: [CustomFieldOption!]!
+  isMultiValue: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CustomFieldConnection {
+  nodes: [CustomField!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+enum CustomFieldType {
+  TEXT
+  RICH_TEXT
+  PEOPLE
+  PICKER
+  MULTI_PICKER
+  DATE
+  OBJECT_SET
+  BOOLEAN
+  URL
+}
+
+type CustomFieldOption {
+  id: ID!
+  value: String!
+}
+
+type CustomFieldValue {
+  field: CustomField!
+  value: CustomFieldValueUnion
+}
+
+union CustomFieldValueUnion = TextValue | RichTextValue | PeopleValue | PickerValue | DateValue | ObjectSetValue | BooleanValue | UrlValue
+
+type TextValue {
+  text: String!
+}
+
+type RichTextValue {
+  html: String!
+}
+
+type PeopleValue {
+  users: [User!]!
+}
+
+type PickerValue {
+  options: [CustomFieldOption!]!
+}
+
+type DateValue {
+  date: Date!
+}
+
+type ObjectSetValue {
+  objects: [CatalogObject!]!
+}
+
+type BooleanValue {
+  bool: Boolean!
+}
+
+type UrlValue {
+  url: String!
+  label: String
+}
+
+input UpdateCustomFieldValueInput {
+  objectId: ID!
+  objectType: CatalogObjectType!
+  fieldId: ID!
+  value: CustomFieldValueInput!
+}
+
+input CustomFieldValueInput {
+  text: String
+  html: String
+  userIds: [ID!]
+  optionIds: [ID!]
+  date: Date
+  objectIds: [ID!]
+  bool: Boolean
+  url: String
+  urlLabel: String
+}
+
+# ─── Flag / Trust Types ───────────────────────────────────────────────────────
+
+type Flag {
+  id: ID!
+  flagType: FlagType!
+  objectId: ID!
+  objectType: CatalogObjectType!
+  author: User!
+  reason: String
+  createdAt: DateTime!
+}
+
+enum FlagType {
+  ENDORSEMENT
+  WARNING
+  DEPRECATION
+}
+
+# ─── Domain Types ─────────────────────────────────────────────────────────────
+
+type Domain {
+  id: ID!
+  name: String!
+  description: String
+  stewards: [User!]!
+  objects: [CatalogObject!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DomainConnection {
+  nodes: [Domain!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─── Tag Types ────────────────────────────────────────────────────────────────
+
+type Tag {
+  id: ID!
+  name: String!
+  color: String
+  createdAt: DateTime!
+}
+
+type TagConnection {
+  nodes: [Tag!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TagAssignment {
+  tag: Tag!
+  objectId: ID!
+  objectType: CatalogObjectType!
+  assignedAt: DateTime!
+}
+
+# ─── Catalog Object Union ─────────────────────────────────────────────────────
+
+union CatalogObject = DataSource | CatalogSchema | Table | Column | SavedQuery | Article | GlossaryTerm
+
+enum CatalogObjectType {
+  DATA_SOURCE
+  SCHEMA
+  TABLE
+  COLUMN
+  QUERY
+  ARTICLE
+  GLOSSARY_TERM
+  BI_SERVER
+  BI_DATASOURCE
+  BI_REPORT
+  BI_FOLDER
+  DATAFLOW
+  ATTRIBUTE
+}
+
+# ─── Shared / Utility Types ───────────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+  limit: Int
+  offset: Int
+}
+
+type DeleteResult {
+  success: Boolean!
+  id: ID!
+  message: String
+}
+
+scalar DateTime
+scalar Date
+scalar JSON
