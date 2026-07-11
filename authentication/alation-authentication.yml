@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/alation-data-catalog-openapi.yaml, openapi/alation-governance-openapi.yaml,
+  openapi/alation-lineage-openapi.yaml, openapi/alation-search-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerToken
+  type: http
+  scheme: bearer
+  description: API access token obtained from /integration/v1/createRefreshToken/
+  sources:
+  - openapi/alation-data-catalog-openapi.yaml
+  - openapi/alation-governance-openapi.yaml
+  - openapi/alation-lineage-openapi.yaml
+  - openapi/alation-search-openapi.yaml
