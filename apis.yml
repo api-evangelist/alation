@@ -183,6 +183,8 @@ apis:
   description: REST API for searching and discovering catalog assets in Alation. Supports
     full-text search, AI-powered aggregated context retrieval, and article browsing.
 common:
+- type: AgenticAccess
+  url: agentic-access/alation-agentic-access.yml
 - type: TrustCenter
   url: security/alation-trust-center.yml
 - type: VulnerabilityDisclosure
