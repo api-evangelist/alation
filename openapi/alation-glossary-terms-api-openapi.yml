@@ -1,0 +1,179 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Glossary Terms API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Glossary Terms
+  description: Manage business glossary terms
+paths:
+  /glossary_term/:
+    get:
+      operationId: listGlossaryTerms
+      summary: List glossary terms
+      description: Returns business glossary terms from the Alation catalog.
+      tags:
+      - Glossary Terms
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: search
+        in: query
+        description: Search term to filter glossary terms
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of glossary terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTermList'
+    post:
+      operationId: createGlossaryTerm
+      summary: Create a glossary term
+      description: Creates a new business glossary term.
+      tags:
+      - Glossary Terms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlossaryTermRequest'
+      responses:
+        '201':
+          description: Glossary term created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+  /glossary_term/{id}/:
+    get:
+      operationId: getGlossaryTerm
+      summary: Get a glossary term
+      description: Returns details for a specific glossary term.
+      tags:
+      - Glossary Terms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Glossary term details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+    put:
+      operationId: updateGlossaryTerm
+      summary: Update a glossary term
+      description: Updates an existing glossary term.
+      tags:
+      - Glossary Terms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlossaryTermRequest'
+      responses:
+        '200':
+          description: Glossary term updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlossaryTerm'
+    delete:
+      operationId: deleteGlossaryTerm
+      summary: Delete a glossary term
+      description: Deletes a glossary term.
+      tags:
+      - Glossary Terms
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Deleted successfully
+components:
+  schemas:
+    GlossaryTermRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+          description: Term name
+        description:
+          type: string
+          description: Term definition
+        abbreviation:
+          type: string
+        synonyms:
+          type: array
+          items:
+            type: string
+        stewards:
+          type: array
+          items:
+            type: integer
+          description: User IDs of assigned stewards
+    GlossaryTerm:
+      allOf:
+      - $ref: '#/components/schemas/GlossaryTermRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          url:
+            type: string
+            format: uri
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
+    GlossaryTermList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GlossaryTerm'
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

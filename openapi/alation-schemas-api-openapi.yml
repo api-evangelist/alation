@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Schemas API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Schemas
+  description: Retrieve schema metadata
+paths:
+  /schema/:
+    get:
+      operationId: listSchemas
+      summary: List schemas
+      description: Returns schemas for a given data source.
+      tags:
+      - Schemas
+      parameters:
+      - name: ds_id
+        in: query
+        required: true
+        description: Data source ID to filter schemas
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of schemas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaList'
+  /schema/{id}/:
+    get:
+      operationId: getSchema
+      summary: Get a schema
+      description: Returns details for a specific schema.
+      tags:
+      - Schemas
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Schema details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schema'
+components:
+  schemas:
+    Schema:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        ds_id:
+          type: integer
+          description: Parent data source ID
+        url:
+          type: string
+          format: uri
+    SchemaList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Schema'
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

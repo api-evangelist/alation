@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Data Quality API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Data Quality
+  description: Manage data quality rules and scores
+paths:
+  /data_quality/rule/:
+    get:
+      operationId: listDataQualityRules
+      summary: List data quality rules
+      description: Returns data quality rules defined in the Alation catalog.
+      tags:
+      - Data Quality
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of data quality rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityRuleList'
+    post:
+      operationId: createDataQualityRule
+      summary: Create a data quality rule
+      description: Creates a new data quality rule.
+      tags:
+      - Data Quality
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataQualityRuleRequest'
+      responses:
+        '201':
+          description: Data quality rule created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityRule'
+  /data_quality/score/:
+    get:
+      operationId: getDataQualityScores
+      summary: Get data quality scores
+      description: Returns data quality scores for catalog objects.
+      tags:
+      - Data Quality
+      parameters:
+      - name: object_type
+        in: query
+        schema:
+          type: string
+      - name: object_id
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Data quality scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataQualityScoreList'
+components:
+  schemas:
+    DataQualityScoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityScore'
+    DataQualityScore:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        overall_score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        dimensions:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+        last_evaluated:
+          type: string
+          format: date-time
+    DataQualityRule:
+      allOf:
+      - $ref: '#/components/schemas/DataQualityRuleRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          created_at:
+            type: string
+            format: date-time
+    DataQualityRuleRequest:
+      type: object
+      required:
+      - title
+      - rule_type
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        rule_type:
+          type: string
+          enum:
+          - accuracy
+          - completeness
+          - consistency
+          - timeliness
+          - uniqueness
+          - validity
+          - custom
+        object_type:
+          type: string
+        object_id:
+          type: integer
+    DataQualityRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityRule'
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

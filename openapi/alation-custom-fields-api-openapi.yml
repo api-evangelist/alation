@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Custom Fields API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Custom Fields
+  description: Manage custom field values
+paths:
+  /custom_field_value/:
+    get:
+      operationId: listCustomFieldValues
+      summary: List custom field values
+      description: Returns custom field values for catalog objects.
+      tags:
+      - Custom Fields
+      parameters:
+      - name: object_type
+        in: query
+        description: Type of catalog object (table, column, datasource, etc.)
+        schema:
+          type: string
+      - name: object_id
+        in: query
+        description: ID of the catalog object
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Custom field values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldValueList'
+    put:
+      operationId: updateCustomFieldValues
+      summary: Update custom field values
+      description: Batch update custom field values for catalog objects.
+      tags:
+      - Custom Fields
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomFieldValueUpdateList'
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Invalid request
+components:
+  schemas:
+    CustomFieldValue:
+      type: object
+      properties:
+        field_id:
+          type: integer
+        field_name:
+          type: string
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        value:
+          description: Field value (string, array, or object depending on field type)
+    CustomFieldValueList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomFieldValue'
+    CustomFieldValueUpdateList:
+      type: array
+      items:
+        type: object
+        properties:
+          field_id:
+            type: integer
+          object_type:
+            type: string
+          object_id:
+            type: integer
+          value:
+            description: New field value
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

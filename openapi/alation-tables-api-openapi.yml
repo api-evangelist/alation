@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Tables API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Tables
+  description: Retrieve table metadata
+paths:
+  /table/:
+    get:
+      operationId: listTables
+      summary: List tables
+      description: Returns tables for a given schema or data source.
+      tags:
+      - Tables
+      parameters:
+      - name: schema_id
+        in: query
+        description: Schema ID to filter tables
+        schema:
+          type: integer
+      - name: ds_id
+        in: query
+        description: Data source ID to filter tables
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of tables
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableList'
+  /table/{id}/:
+    get:
+      operationId: getTable
+      summary: Get a table
+      description: Returns metadata for a specific table.
+      tags:
+      - Tables
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Table details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
+components:
+  schemas:
+    TableList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Table'
+    Table:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        schema_id:
+          type: integer
+        ds_id:
+          type: integer
+        table_type:
+          type: string
+          enum:
+          - TABLE
+          - VIEW
+          - EXTERNAL
+        url:
+          type: string
+          format: uri
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

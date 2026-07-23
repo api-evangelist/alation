@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Lineage API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Lineage
+  description: Retrieve lineage paths between catalog objects
+paths:
+  /lineage/:
+    get:
+      operationId: getLineage
+      summary: Get lineage for an object
+      description: Returns upstream and downstream lineage paths for a catalog object.
+      tags:
+      - Lineage
+      parameters:
+      - name: object_type
+        in: query
+        required: true
+        description: Type of catalog object (table, attribute, etc.)
+        schema:
+          type: string
+      - name: object_id
+        in: query
+        required: true
+        description: ID of the catalog object
+        schema:
+          type: integer
+      - name: direction
+        in: query
+        description: Lineage direction
+        schema:
+          type: string
+          enum:
+          - upstream
+          - downstream
+          - both
+          default: both
+      responses:
+        '200':
+          description: Lineage paths
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineageGraph'
+components:
+  schemas:
+    LineageNode:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+    LineageGraph:
+      type: object
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageEdge'
+    LineageEdge:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/LineageNode'
+        target:
+          $ref: '#/components/schemas/LineageNode'
+        dataflow_id:
+          type: integer
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

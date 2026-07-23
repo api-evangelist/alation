@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Columns API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Columns
+  description: Retrieve column metadata
+paths:
+  /attribute/:
+    get:
+      operationId: listColumns
+      summary: List columns
+      description: Returns columns for a given table.
+      tags:
+      - Columns
+      parameters:
+      - name: table_id
+        in: query
+        required: true
+        description: Table ID to filter columns
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of columns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnList'
+components:
+  schemas:
+    Column:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        data_type:
+          type: string
+        table_id:
+          type: integer
+        ds_id:
+          type: integer
+        is_nullable:
+          type: boolean
+        is_primary_key:
+          type: boolean
+    ColumnList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Column'
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

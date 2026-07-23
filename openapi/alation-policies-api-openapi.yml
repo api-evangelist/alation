@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Policies API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Policies
+  description: Manage data governance policies
+paths:
+  /policy/:
+    get:
+      operationId: listPolicies
+      summary: List policies
+      description: Returns governance policies from the Alation catalog.
+      tags:
+      - Policies
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyList'
+    post:
+      operationId: createPolicy
+      summary: Create a policy
+      description: Creates a new governance policy.
+      tags:
+      - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRequest'
+      responses:
+        '201':
+          description: Policy created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+  /policy/{id}/:
+    get:
+      operationId: getPolicy
+      summary: Get a policy
+      tags:
+      - Policies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Policy details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+components:
+  schemas:
+    PolicyRequest:
+      type: object
+      required:
+      - title
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        policy_type:
+          type: string
+          enum:
+          - data_protection
+          - retention
+          - access_control
+          - quality
+        stewards:
+          type: array
+          items:
+            type: integer
+    Policy:
+      allOf:
+      - $ref: '#/components/schemas/PolicyRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          url:
+            type: string
+            format: uri
+          created_at:
+            type: string
+            format: date-time
+    PolicyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy'
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/

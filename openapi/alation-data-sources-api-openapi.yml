@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: Alation Data Catalog Aggregated Context Data Sources API
+  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  version: 1.0.0
+  contact:
+    name: Alation Developer Support
+    url: https://developer.alation.com
+servers:
+- url: https://{instance}/integration/v2
+  description: Alation instance
+  variables:
+    instance:
+      default: your-alation-instance.com
+      description: Your Alation instance hostname
+security:
+- BearerToken: []
+tags:
+- name: Data Sources
+  description: Manage data source connections
+paths:
+  /datasource/:
+    get:
+      operationId: listDataSources
+      summary: List data sources
+      description: Returns a list of all data sources configured in the Alation catalog.
+      tags:
+      - Data Sources
+      parameters:
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          default: 100
+          maximum: 500
+      - name: skip
+        in: query
+        description: Number of results to skip for pagination
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of data sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceList'
+        '401':
+          description: Unauthorized
+  /datasource/{id}/:
+    get:
+      operationId: getDataSource
+      summary: Get a data source
+      description: Returns details for a specific data source by ID.
+      tags:
+      - Data Sources
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Data source ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Data source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '404':
+          description: Data source not found
+components:
+  schemas:
+    DataSourceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier
+        title:
+          type: string
+          description: Display title
+        description:
+          type: string
+          description: Data source description
+        dbtype:
+          type: string
+          description: Database type (postgresql, mysql, snowflake, etc.)
+        host:
+          type: string
+          description: Database host
+        port:
+          type: integer
+          description: Database port
+        db_username:
+          type: string
+          description: Database username
+        is_virtual:
+          type: boolean
+          description: Whether this is a virtual data source
+        url:
+          type: string
+          format: uri
+          description: Alation catalog URL for this data source
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+      description: API access token obtained from /integration/v1/createRefreshToken/
