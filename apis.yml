@@ -11,7 +11,20 @@ tags:
 - Metadata Management
 - AI
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/alation.png
 description: Alation is a data intelligence platform that helps organizations harness
   the power of their data by providing a centralized platform for data cataloging,
   governance, and collaboration. By enabling users to easily search, understand, and
@@ -22,166 +35,1254 @@ created: '2025-01-08'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: alation:data-catalog-api
-  name: Alation Data Catalog API
+- aid: alation:alation-aggregated-context-api
+  name: Alation Aggregated Context API
+  description: Retrieve aggregated context for AI applications
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
   tags:
-  - Data Catalog
-  - Metadata
-  - Data Sources
-  - Schemas
-  - Tables
+  - Aggregated Context
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-aggregated-context-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-columns-api
+  name: Alation Columns API
+  description: Retrieve column metadata
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
   - Columns
   properties:
-  - url: https://developer.alation.com
-    type: Documentation
-  - url: openapi/alation-data-catalog-openapi.yaml
-    type: OpenAPI
-  - url: json-schema/alation-alation-data-catalog-data-source-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-data-catalog-schema-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-data-catalog-table-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-data-catalog-column-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
-    type: JSONSchema
-  - url: json-structure/alation-alation-data-catalog-data-source-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-data-catalog-schema-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-data-catalog-table-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-data-catalog-column-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
-    type: JSONStructure
-  - url: examples/alation-alation-data-catalog-data-source-example.json
-    type: Examples
-  - url: examples/alation-alation-data-catalog-schema-example.json
-    type: Examples
-  - url: examples/alation-alation-data-catalog-table-example.json
-    type: Examples
-  - url: examples/alation-alation-data-catalog-column-example.json
-    type: Examples
-  - url: examples/alation-alation-data-catalog-custom-field-value-example.json
-    type: Examples
-  - url: graphql/alation-graphql.md
-    type: GraphQL
+  - type: OpenAPI
+    url: openapi/alation-columns-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-custom-fields-api
+  name: Alation Custom Fields API
+  description: Manage custom field values
   humanURL: https://developer.alation.com
   baseURL: https://your-instance.alation.com/integration/v2
-  description: REST API for managing data sources, schemas, tables, columns, and custom
-    field values in the Alation data catalog. Supports metadata retrieval and batch
-    updates for catalog objects.
-- aid: alation:lineage-api
-  name: Alation Lineage API
   tags:
-  - Data Lineage
-  - Dataflow
-  - Metadata
+  - Custom Fields
   properties:
-  - url: https://developer.alation.com
-    type: Documentation
-  - url: openapi/alation-lineage-openapi.yaml
-    type: OpenAPI
-  - url: json-schema/alation-alation-lineage-dataflow-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-lineage-lineage-graph-schema.json
-    type: JSONSchema
-  - url: json-structure/alation-alation-lineage-dataflow-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-lineage-lineage-graph-structure.json
-    type: JSONStructure
-  - url: examples/alation-alation-lineage-dataflow-example.json
-    type: Examples
-  - url: examples/alation-alation-lineage-lineage-graph-example.json
-    type: Examples
-  humanURL: https://developer.alation.com/dev/reference/lineage-overview
-  baseURL: https://your-instance.alation.com/api/v1
-  description: REST API for managing data lineage and dataflow objects in Alation.
-    Supports creating, retrieving, updating, and deleting lineage paths between catalog
-    objects.
-- aid: alation:governance-api
-  name: Alation Governance API
+  - type: OpenAPI
+    url: openapi/alation-custom-fields-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-data-quality-api
+  name: Alation Data Quality API
+  description: Manage data quality rules and scores
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
   tags:
-  - Data Governance
-  - Business Glossary
   - Data Quality
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-data-quality-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-data-sources-api
+  name: Alation Data Sources API
+  description: Manage data source connections
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
+  - Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-data-sources-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-dataflows-api
+  name: Alation Dataflows API
+  description: Manage dataflow lineage objects
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
+  - Dataflows
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-dataflows-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-glossary-terms-api
+  name: Alation Glossary Terms API
+  description: Manage business glossary terms
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
+  - Glossary Terms
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-glossary-terms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-lineage-api
+  name: Alation Lineage API
+  description: Retrieve lineage paths between catalog objects
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
+  - Lineage
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-lineage-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-policies-api
+  name: Alation Policies API
+  description: Manage data governance policies
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
+  tags:
   - Policies
   properties:
-  - url: https://developer.alation.com
-    type: Documentation
-  - url: openapi/alation-governance-openapi.yaml
-    type: OpenAPI
-  - url: json-schema/alation-alation-governance-glossary-term-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-governance-policy-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-governance-data-quality-rule-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-governance-data-quality-score-schema.json
-    type: JSONSchema
-  - url: json-structure/alation-alation-governance-glossary-term-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-governance-policy-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-governance-data-quality-rule-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-governance-data-quality-score-structure.json
-    type: JSONStructure
-  - url: examples/alation-alation-governance-glossary-term-example.json
-    type: Examples
-  - url: examples/alation-alation-governance-policy-example.json
-    type: Examples
-  - url: examples/alation-alation-governance-data-quality-rule-example.json
-    type: Examples
-  - url: examples/alation-alation-governance-data-quality-score-example.json
-    type: Examples
+  - type: OpenAPI
+    url: openapi/alation-policies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-schemas-api
+  name: Alation Schemas API
+  description: Retrieve schema metadata
   humanURL: https://developer.alation.com
   baseURL: https://your-instance.alation.com/integration/v2
-  description: REST API for data governance workflows in Alation, including business
-    glossary management, governance policy enforcement, and data quality rules and
-    scoring.
-- aid: alation:search-api
+  tags:
+  - Schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-schemas-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-search-api
   name: Alation Search API
+  description: Search catalog assets
+  humanURL: https://developer.alation.com
+  baseURL: https://your-instance.alation.com/integration/v2
   tags:
   - Search
-  - Data Discovery
-  - AI
-  - Catalog
   properties:
-  - url: https://developer.alation.com
-    type: Documentation
-  - url: openapi/alation-search-openapi.yaml
-    type: OpenAPI
-  - url: json-schema/alation-alation-search-search-result-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-search-search-results-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-search-context-request-schema.json
-    type: JSONSchema
-  - url: json-schema/alation-alation-search-article-schema.json
-    type: JSONSchema
-  - url: json-structure/alation-alation-search-search-result-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-search-search-results-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-search-context-request-structure.json
-    type: JSONStructure
-  - url: json-structure/alation-alation-search-article-structure.json
-    type: JSONStructure
-  - url: examples/alation-alation-search-search-result-example.json
-    type: Examples
-  - url: examples/alation-alation-search-search-results-example.json
-    type: Examples
-  - url: examples/alation-alation-search-context-request-example.json
-    type: Examples
-  - url: examples/alation-alation-search-article-example.json
-    type: Examples
+  - type: OpenAPI
+    url: openapi/alation-search-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
+- aid: alation:alation-tables-api
+  name: Alation Tables API
+  description: Retrieve table metadata
   humanURL: https://developer.alation.com
   baseURL: https://your-instance.alation.com/integration/v2
-  description: REST API for searching and discovering catalog assets in Alation. Supports
-    full-text search, AI-powered aggregated context retrieval, and article browsing.
+  tags:
+  - Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/alation-tables-api-openapi.yml
+  - type: Documentation
+    url: https://developer.alation.com
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-data-source-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-schema-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-table-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-column-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-data-catalog-custom-field-value-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-data-source-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-schema-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-table-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-column-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-data-catalog-custom-field-value-structure.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-data-source-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-schema-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-table-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-column-example.json
+  - type: Examples
+    url: examples/alation-alation-data-catalog-custom-field-value-example.json
+  - type: GraphQL
+    url: graphql/alation-graphql.md
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-dataflow-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-lineage-lineage-graph-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-dataflow-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-lineage-lineage-graph-structure.json
+  - type: Examples
+    url: examples/alation-alation-lineage-dataflow-example.json
+  - type: Examples
+    url: examples/alation-alation-lineage-lineage-graph-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-glossary-term-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-governance-data-quality-score-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-glossary-term-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-policy-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-rule-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-governance-data-quality-score-structure.json
+  - type: Examples
+    url: examples/alation-alation-governance-glossary-term-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-policy-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-rule-example.json
+  - type: Examples
+    url: examples/alation-alation-governance-data-quality-score-example.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-search-results-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-context-request-schema.json
+  - type: JSONSchema
+    url: json-schema/alation-alation-search-article-schema.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-result-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-search-results-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-context-request-structure.json
+  - type: JSONStructure
+    url: json-structure/alation-alation-search-article-structure.json
+  - type: Examples
+    url: examples/alation-alation-search-search-result-example.json
+  - type: Examples
+    url: examples/alation-alation-search-search-results-example.json
+  - type: Examples
+    url: examples/alation-alation-search-context-request-example.json
+  - type: Examples
+    url: examples/alation-alation-search-article-example.json
 common:
 - type: AgenticAccess
   url: agentic-access/alation-agentic-access.yml
