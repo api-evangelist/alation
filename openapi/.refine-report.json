@@ -1,0 +1,36 @@
+{
+  "provider": "alation",
+  "sources": [
+    "alation-aggregated-context-api-openapi.yml",
+    "alation-columns-api-openapi.yml",
+    "alation-custom-fields-api-openapi.yml",
+    "alation-data-quality-api-openapi.yml",
+    "alation-data-sources-api-openapi.yml",
+    "alation-dataflows-api-openapi.yml",
+    "alation-glossary-terms-api-openapi.yml",
+    "alation-lineage-api-openapi.yml",
+    "alation-policies-api-openapi.yml",
+    "alation-schemas-api-openapi.yml",
+    "alation-search-api-openapi.yml",
+    "alation-tables-api-openapi.yml"
+  ],
+  "outputs": [
+    "alation-aggregated-context-api-openapi.yml",
+    "alation-columns-api-openapi.yml",
+    "alation-custom-fields-api-openapi.yml",
+    "alation-data-quality-api-openapi.yml",
+    "alation-data-sources-api-openapi.yml",
+    "alation-dataflows-api-openapi.yml",
+    "alation-glossary-terms-api-openapi.yml",
+    "alation-lineage-api-openapi.yml",
+    "alation-policies-api-openapi.yml",
+    "alation-schemas-api-openapi.yml",
+    "alation-search-api-openapi.yml",
+    "alation-tables-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
