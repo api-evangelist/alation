@@ -33,7 +33,7 @@ description: Alation is a data intelligence platform that helps organizations ha
   uncover insights, improve data quality, and drive innovation.
 created: '2025-01-08'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: alation:alation-aggregated-context-api
   name: Alation Aggregated Context API
