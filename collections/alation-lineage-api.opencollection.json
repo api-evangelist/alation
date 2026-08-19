@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alation Data Catalog Aggregated Context Lineage API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lineage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get lineage for an object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}/integration/v2/lineage/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of catalog object (table, attribute, etc.)"
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the catalog object"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Lineage direction"
+              }
+            ]
+          },
+          "docs": "Returns upstream and downstream lineage paths for a catalog object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

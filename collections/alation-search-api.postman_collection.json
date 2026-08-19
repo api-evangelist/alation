@@ -1,0 +1,481 @@
+{
+  "item": [
+    {
+      "id": "05d9d0fd-7c30-4245-ab11-72cad44557df",
+      "name": "Search",
+      "description": {
+        "content": "Search catalog assets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fb6153d-0020-4b74-9cf3-2960a126d206",
+          "name": "Search the catalog",
+          "request": {
+            "name": "Search the catalog",
+            "description": {
+              "content": "Full-text search across all catalog objects including tables, columns, data sources, glossary terms, and queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query string"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by object type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30bb32b5-2375-4f5a-9a68-1973f35157c3",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 9820,\n  \"results\": [\n    {\n      \"id\": 1356,\n      \"object_type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"http://yAumW.zyYFlDFP8MxJvQAlcZoIObVjWCGiifSyTL1UPGQW\",\n      \"score\": 6986.903697473938,\n      \"breadcrumb\": \"string\"\n    },\n    {\n      \"id\": 1656,\n      \"object_type\": \"string\",\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"url\": \"https://ecwMuro.icujZzFETlUL2nssNqwTAERGFyegqOWw,qQCVuE6DmDPfIJkswlp8r-Fs,\",\n      \"score\": 6545.052243360592,\n      \"breadcrumb\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0bac990-52a4-40cb-849a-4d6069fac2d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b69feec5-d749-4eb6-a813-19819074c908",
+          "name": "List articles",
+          "request": {
+            "name": "List articles",
+            "description": {
+              "content": "Returns catalog articles (wiki pages and documentation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "article",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1df6c4ae-2329-4dfb-92f8-a6fc5138ba8c",
+              "name": "List of articles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "article",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 891,\n    \"title\": \"string\",\n    \"body\": \"string\",\n    \"url\": \"https://nbYsgSelATEMSDIuFje.ikznN.bA5MxDNDU9Qh.q\",\n    \"author\": 5187,\n    \"created_at\": \"2011-06-28T03:25:24.860Z\",\n    \"updated_at\": \"2003-01-27T02:36:35.333Z\"\n  },\n  {\n    \"id\": 7857,\n    \"title\": \"string\",\n    \"body\": \"string\",\n    \"url\": \"http://gTNcWTkCotgMehduazijtvwdqzSjA.ufjmOzvWcxdMuwXE-h5XTC..XQU-Xr-OOio85fa.sp8TX\",\n    \"author\": 8526,\n    \"created_at\": \"1958-01-10T13:15:38.771Z\",\n    \"updated_at\": \"1989-04-14T08:00:35.800Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d8644f8-4245-4b0a-a54e-33dfea8f4c15",
+          "name": "Get an article",
+          "request": {
+            "name": "Get an article",
+            "description": {
+              "content": "Returns a specific catalog article.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "article",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cf99aff-c454-4c57-ac21-8f9fe8b3dd4e",
+              "name": "Article details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "article",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3920,\n  \"title\": \"string\",\n  \"body\": \"string\",\n  \"url\": \"http://rPXsWuFlF.ewizuDvUUWaI.vCCZmZq36yLV7bZkTaf2IDUFLyqlEAYmCgKRLuhjQroFFL2CK\",\n  \"author\": 888,\n  \"created_at\": \"1966-12-14T10:23:31.499Z\",\n  \"updated_at\": \"2003-06-25T10:07:10.720Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4ad8ddf4-3173-4e6e-b83b-8ae33a05ed0b",
+    "name": "Alation Data Catalog Aggregated Context Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

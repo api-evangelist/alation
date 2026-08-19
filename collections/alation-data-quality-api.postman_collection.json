@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "id": "0a18eeb4-fcbf-450c-b544-f76bd8b14830",
+      "name": "Data Quality",
+      "description": {
+        "content": "Manage data quality rules and scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98005cd4-057c-498b-b600-3c2955d28340",
+          "name": "List data quality rules",
+          "request": {
+            "name": "List data quality rules",
+            "description": {
+              "content": "Returns data quality rules defined in the Alation catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data_quality",
+                "rule",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26f2c98c-74cc-4c43-a429-b1fb2762aaaf",
+              "name": "List of data quality rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data_quality",
+                    "rule",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"title\": \"string\",\n    \"rule_type\": \"uniqueness\",\n    \"description\": \"string\",\n    \"object_type\": \"string\",\n    \"object_id\": 1584,\n    \"id\": 1902,\n    \"created_at\": \"1978-02-21T10:01:20.211Z\"\n  },\n  {\n    \"title\": \"string\",\n    \"rule_type\": \"completeness\",\n    \"description\": \"string\",\n    \"object_type\": \"string\",\n    \"object_id\": 8897,\n    \"id\": 113,\n    \"created_at\": \"2009-06-11T08:56:53.619Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "decb3495-fce6-4ec0-9d1c-6088fc5e5d82",
+          "name": "Create a data quality rule",
+          "request": {
+            "name": "Create a data quality rule",
+            "description": {
+              "content": "Creates a new data quality rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data_quality",
+                "rule",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"rule_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79b82778-b121-40e2-b178-ee7de9d37c08",
+              "name": "Data quality rule created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data_quality",
+                    "rule",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"rule_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"rule_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<integer>\",\n  \"id\": 8384,\n  \"created_at\": \"1983-11-26T15:37:03.772Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51fc24de-0261-4ec1-8471-1530ca051441",
+          "name": "Get data quality scores",
+          "request": {
+            "name": "Get data quality scores",
+            "description": {
+              "content": "Returns data quality scores for catalog objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data_quality",
+                "score",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a6d5e5e-0f21-4c32-a605-20d0f6d12fa0",
+              "name": "Data quality scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data_quality",
+                    "score",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"object_type\": \"string\",\n    \"object_id\": 3821,\n    \"overall_score\": 17.852164548427773,\n    \"dimensions\": {\n      \"key_0\": 8540.35215015782\n    },\n    \"last_evaluated\": \"1953-11-17T21:37:38.449Z\"\n  },\n  {\n    \"object_type\": \"string\",\n    \"object_id\": 1817,\n    \"overall_score\": 44.51244630185478,\n    \"dimensions\": {\n      \"key_0\": 7542.096427647037\n    },\n    \"last_evaluated\": \"1996-07-19T04:26:18.604Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a66dd35f-f2a8-4853-a71c-d8cbafa8c42a",
+    "name": "Alation Data Catalog Aggregated Context Data Quality API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

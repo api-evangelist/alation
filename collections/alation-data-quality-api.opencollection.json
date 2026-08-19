@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alation Data Catalog Aggregated Context Data Quality API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Quality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List data quality rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}/integration/v2/data_quality/rule/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns data quality rules defined in the Alation catalog."
+        },
+        {
+          "info": {
+            "name": "Create a data quality rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}/integration/v2/data_quality/rule/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data quality rule."
+        },
+        {
+          "info": {
+            "name": "Get data quality scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}/integration/v2/data_quality/score/",
+            "params": [
+              {
+                "name": "object_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns data quality scores for catalog objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

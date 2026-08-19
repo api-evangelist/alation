@@ -1,0 +1,630 @@
+{
+  "item": [
+    {
+      "id": "943c9f8e-a49d-4dd2-9534-32d426d4eec6",
+      "name": "Glossary Terms",
+      "description": {
+        "content": "Manage business glossary terms",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89043015-fdf2-4720-8f80-f04dc3fa7c81",
+          "name": "List glossary terms",
+          "request": {
+            "name": "List glossary terms",
+            "description": {
+              "content": "Returns business glossary terms from the Alation catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "glossary_term",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term to filter glossary terms"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be78a3e0-d9a9-4c56-a6be-163bce79ef6f",
+              "name": "List of glossary terms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "glossary_term",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"abbreviation\": \"string\",\n    \"synonyms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"stewards\": [\n      9377,\n      3311\n    ],\n    \"id\": 7048,\n    \"url\": \"https://fOHGtDJGCFrTQLbACoxh.zdtaYz2Jb,bwrZmeA9W5VGt1I6D7-XKt8LRq-A\",\n    \"created_at\": \"1996-11-22T04:59:29.215Z\",\n    \"updated_at\": \"1979-04-23T03:43:39.380Z\"\n  },\n  {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"abbreviation\": \"string\",\n    \"synonyms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"stewards\": [\n      3223,\n      263\n    ],\n    \"id\": 6323,\n    \"url\": \"http://VHaBkBpXyFRAjlkEcnJyrKijoPVOynhTh.ntyESOpLRaHNBNB7SVKHFjUpcd8BzJ7-T7ZA5Ffj4CQRGMSPa5hl8MgiP\",\n    \"created_at\": \"2001-04-05T22:51:57.980Z\",\n    \"updated_at\": \"1964-03-05T09:44:57.240Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c272da61-fac8-4462-bd61-d9a3760e5c3b",
+          "name": "Create a glossary term",
+          "request": {
+            "name": "Create a glossary term",
+            "description": {
+              "content": "Creates a new business glossary term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "glossary_term",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2af5c91-9373-4960-8066-940d49080252",
+              "name": "Glossary term created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "glossary_term",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"id\": 320,\n  \"url\": \"http://LPQogcivEywbhWAQ.wbajm6sGafdjp,wzNMeNe7hSTOnzhNmU40nhDuNu\",\n  \"created_at\": \"2014-03-06T02:17:04.537Z\",\n  \"updated_at\": \"2014-01-11T19:30:38.708Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cb3f8b7-8d19-4576-a79c-48ad5dc59dff",
+          "name": "Get a glossary term",
+          "request": {
+            "name": "Get a glossary term",
+            "description": {
+              "content": "Returns details for a specific glossary term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "glossary_term",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5bbad0d-927f-4838-8a25-2ec185c2b000",
+              "name": "Glossary term details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "glossary_term",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"id\": 320,\n  \"url\": \"http://LPQogcivEywbhWAQ.wbajm6sGafdjp,wzNMeNe7hSTOnzhNmU40nhDuNu\",\n  \"created_at\": \"2014-03-06T02:17:04.537Z\",\n  \"updated_at\": \"2014-01-11T19:30:38.708Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a1a5222-c1ed-40dc-886e-d7d75787b6d6",
+          "name": "Update a glossary term",
+          "request": {
+            "name": "Update a glossary term",
+            "description": {
+              "content": "Updates an existing glossary term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "glossary_term",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3409cad9-bbd2-41cc-808b-9299c744ecef",
+              "name": "Glossary term updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "glossary_term",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"abbreviation\": \"<string>\",\n  \"synonyms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"stewards\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"id\": 320,\n  \"url\": \"http://LPQogcivEywbhWAQ.wbajm6sGafdjp,wzNMeNe7hSTOnzhNmU40nhDuNu\",\n  \"created_at\": \"2014-03-06T02:17:04.537Z\",\n  \"updated_at\": \"2014-01-11T19:30:38.708Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23b9f0f8-1e55-4511-8379-9aebbb51f937",
+          "name": "Delete a glossary term",
+          "request": {
+            "name": "Delete a glossary term",
+            "description": {
+              "content": "Deletes a glossary term.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "glossary_term",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ba91045-f581-4d29-8bda-ca0e01d24517",
+              "name": "Deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "glossary_term",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "519f4e4a-48dc-4714-a3b1-15a22678164d",
+    "name": "Alation Data Catalog Aggregated Context Glossary Terms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

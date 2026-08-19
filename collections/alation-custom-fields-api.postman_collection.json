@@ -1,0 +1,328 @@
+{
+  "item": [
+    {
+      "id": "1a40cbdf-1270-42ea-90ea-4466f79c09e6",
+      "name": "Custom Fields",
+      "description": {
+        "content": "Manage custom field values",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "433609f3-4529-4d3a-8627-920556a80878",
+          "name": "List custom field values",
+          "request": {
+            "name": "List custom field values",
+            "description": {
+              "content": "Returns custom field values for catalog objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_field_value",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>",
+                  "description": "Type of catalog object (table, column, datasource, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<integer>",
+                  "description": "ID of the catalog object"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86b18ab5-7d8c-456a-8576-41a4b52bf5d4",
+              "name": "Custom field values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_field_value",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"field_id\": 7331,\n    \"field_name\": \"string\",\n    \"object_type\": \"string\",\n    \"object_id\": 3718,\n    \"value\": {}\n  },\n  {\n    \"field_id\": 9360,\n    \"field_name\": \"string\",\n    \"object_type\": \"string\",\n    \"object_id\": 4819,\n    \"value\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01edb2e2-62c9-4e8e-852c-b42dc32958aa",
+          "name": "Update custom field values",
+          "request": {
+            "name": "Update custom field values",
+            "description": {
+              "content": "Batch update custom field values for catalog objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_field_value",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  },\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d734b5de-80bb-4c67-8f76-c8c5fcc66977",
+              "name": "Updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_field_value",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  },\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93151e6b-13c6-4454-a783-62171679187b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_field_value",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  },\n  {\n    \"field_id\": \"<integer>\",\n    \"object_type\": \"<string>\",\n    \"object_id\": \"<integer>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b1e49c90-674b-4bfd-9d06-8ff97ccbca24",
+    "name": "Alation Data Catalog Aggregated Context Custom Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

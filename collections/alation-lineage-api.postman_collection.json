@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "310ba621-a379-42c3-8ab9-1c2571f59ae8",
+      "name": "Lineage",
+      "description": {
+        "content": "Retrieve lineage paths between catalog objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e8e2ff7b-149b-4391-96df-bd3ac1956d1b",
+          "name": "Get lineage for an object",
+          "request": {
+            "name": "Get lineage for an object",
+            "description": {
+              "content": "Returns upstream and downstream lineage paths for a catalog object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lineage",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>",
+                  "description": "(Required) Type of catalog object (table, attribute, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "object_id",
+                  "value": "<integer>",
+                  "description": "(Required) ID of the catalog object"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "both",
+                  "description": "Lineage direction"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4034138a-a789-4611-b81a-13ded944c091",
+              "name": "Lineage paths",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lineage",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "object_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "both"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nodes\": [\n    {\n      \"object_type\": \"string\",\n      \"object_id\": 3252,\n      \"title\": \"string\",\n      \"url\": \"http://lOYyiGKVlkMhLOxJzwBQqXUmpbbsdUf.twhli3D4-sT3XJNVG.+ZfVGYpzrJoAystjHyXhsdA.bKtO54bF1cdtP\"\n    },\n    {\n      \"object_type\": \"string\",\n      \"object_id\": 9244,\n      \"title\": \"string\",\n      \"url\": \"http://Vzd.ozimsDYgSoUk.XVqHdN6JjTCtU4P6C0bmEFStHRJdlz2C\"\n    }\n  ],\n  \"edges\": [\n    {\n      \"source\": {\n        \"object_type\": \"string\",\n        \"object_id\": 3250,\n        \"title\": \"string\",\n        \"url\": \"http://VedsCGOvQSiDQyGsrr.hftU.tMG8CWiUvCJAm6yL9IITz5cp7PPVkYXiBqzV\"\n      },\n      \"target\": {\n        \"object_type\": \"string\",\n        \"object_id\": 7677,\n        \"title\": \"string\",\n        \"url\": \"http://ZsDAtBLZaWFDBKmzLUjFKKZdXZnXMl.bgrncGxVTL4YYgsuRNDoUW9K\"\n      },\n      \"dataflow_id\": 8230\n    },\n    {\n      \"source\": {\n        \"object_type\": \"string\",\n        \"object_id\": 257,\n        \"title\": \"string\",\n        \"url\": \"http://LYeAUPyLcMxIpxiCMNduKAUboctHmLTa.seaAcH7W9iJOE3UxHHpTZPrkhdOkan,r00FwgCnaLJKcBJm3YKyVQHycWFalIwZ.SNZB\"\n      },\n      \"target\": {\n        \"object_type\": \"string\",\n        \"object_id\": 7346,\n        \"title\": \"string\",\n        \"url\": \"https://dgDEjLLuHWUiGVXrAlkYwPjxBJ.uaPYpvyCn8TdSUl5CZDSIMTLs.g4BkPsvr6OVt54\"\n      },\n      \"dataflow_id\": 2673\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fea5ae4b-3004-45f0-ad57-e62170c69763",
+    "name": "Alation Data Catalog Aggregated Context Lineage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "item": [
+    {
+      "id": "124db83e-548a-490a-a70e-fb3f755803fd",
+      "name": "Tables",
+      "description": {
+        "content": "Retrieve table metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26d95a14-275e-4757-b316-2b446419898f",
+          "name": "List tables",
+          "request": {
+            "name": "List tables",
+            "description": {
+              "content": "Returns tables for a given schema or data source.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "table",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "schema_id",
+                  "value": "<integer>",
+                  "description": "Schema ID to filter tables"
+                },
+                {
+                  "disabled": false,
+                  "key": "ds_id",
+                  "value": "<integer>",
+                  "description": "Data source ID to filter tables"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44f11362-70b7-4ecc-8a9c-e078393dffe0",
+              "name": "List of tables",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "schema_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "ds_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3530,\n    \"name\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"schema_id\": 9459,\n    \"ds_id\": 9557,\n    \"table_type\": \"TABLE\",\n    \"url\": \"https://fHwTXHwhmFXusF.oqxxNPDNf2sIjsyUlMLXywoivIFywm59\"\n  },\n  {\n    \"id\": 9046,\n    \"name\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"schema_id\": 7810,\n    \"ds_id\": 414,\n    \"table_type\": \"TABLE\",\n    \"url\": \"http://aOxSNrTvl.plaMg2sQw8VSUzfT5mBICWkYQuQiYyCSZEv4mMPYLf4Pkt\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8aa52d0c-6478-454c-83a8-263462f25d64",
+          "name": "Get a table",
+          "request": {
+            "name": "Get a table",
+            "description": {
+              "content": "Returns metadata for a specific table.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "table",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "615005c7-9946-4754-a70b-a8fcb4235038",
+              "name": "Table details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "table",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1810,\n  \"name\": \"string\",\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"schema_id\": 9231,\n  \"ds_id\": 8695,\n  \"table_type\": \"TABLE\",\n  \"url\": \"https://FHRgorfO.fyzhYgamyHhNkBBMj.egbCNwq-fF9sBXGFK7EmsUojVeUwwU0DeseBL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a145970-68dd-4c3b-92a0-00cf6b820a9b",
+    "name": "Alation Data Catalog Aggregated Context Tables API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

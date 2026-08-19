@@ -1,0 +1,786 @@
+{
+  "item": [
+    {
+      "id": "d35e7036-2838-40a1-8ca9-9275c4c20345",
+      "name": "Dataflows",
+      "description": {
+        "content": "Manage dataflow lineage objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad515635-d311-4a10-aa96-fc054ff3209f",
+          "name": "List dataflows",
+          "request": {
+            "name": "List dataflows",
+            "description": {
+              "content": "Returns a list of all dataflow objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataflow",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6478d014-1128-4cab-974e-f33ef79af4ca",
+              "name": "List of dataflow objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"sources\": [\n      {\n        \"object_type\": \"query\",\n        \"object_id\": 6462\n      },\n      {\n        \"object_type\": \"datasource\",\n        \"object_id\": 9681\n      }\n    ],\n    \"targets\": [\n      {\n        \"object_type\": \"datasource\",\n        \"object_id\": 4448\n      },\n      {\n        \"object_type\": \"query\",\n        \"object_id\": 6014\n      }\n    ],\n    \"external_id\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"id\": 947,\n    \"created_at\": \"2014-09-07T00:31:45.059Z\",\n    \"updated_at\": \"2024-01-01T12:41:15.554Z\"\n  },\n  {\n    \"sources\": [\n      {\n        \"object_type\": \"datasource\",\n        \"object_id\": 926\n      },\n      {\n        \"object_type\": \"query\",\n        \"object_id\": 2109\n      }\n    ],\n    \"targets\": [\n      {\n        \"object_type\": \"attribute\",\n        \"object_id\": 7844\n      },\n      {\n        \"object_type\": \"attribute\",\n        \"object_id\": 4438\n      }\n    ],\n    \"external_id\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"id\": 1437,\n    \"created_at\": \"1997-06-25T01:07:42.604Z\",\n    \"updated_at\": \"1993-11-09T05:39:11.590Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86360928-046d-4550-b90d-c1390f95b528",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48fb95df-991e-447f-80d9-8d0d527f7e08",
+          "name": "Create a dataflow",
+          "request": {
+            "name": "Create a dataflow",
+            "description": {
+              "content": "Creates a new dataflow object representing a lineage path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataflow",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53038ceb-c608-4744-b9dc-725f6773a033",
+              "name": "Dataflow created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": 1037,\n  \"created_at\": \"1965-06-07T22:28:32.706Z\",\n  \"updated_at\": \"1990-02-27T03:14:26.472Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83fff3d5-0eb0-490f-853a-95f25be9576c",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82faa727-613e-40e5-ad9f-c60970b5de76",
+          "name": "Get a dataflow",
+          "request": {
+            "name": "Get a dataflow",
+            "description": {
+              "content": "Returns details for a specific dataflow object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataflow",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f311450-77d6-442a-b8f5-839d6b52f319",
+              "name": "Dataflow details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": 1037,\n  \"created_at\": \"1965-06-07T22:28:32.706Z\",\n  \"updated_at\": \"1990-02-27T03:14:26.472Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0df07b27-620d-4f8a-ac8b-ff5a8dfabaa2",
+              "name": "Dataflow not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "91365eb4-f555-4591-b7d9-a13488c0d26c",
+          "name": "Update a dataflow",
+          "request": {
+            "name": "Update a dataflow",
+            "description": {
+              "content": "Updates an existing dataflow object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataflow",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b67dfb9c-ddf2-4930-b86f-1a082d1931e7",
+              "name": "Dataflow updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sources\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"targets\": [\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    },\n    {\n      \"object_type\": \"<string>\",\n      \"object_id\": \"<integer>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": 1037,\n  \"created_at\": \"1965-06-07T22:28:32.706Z\",\n  \"updated_at\": \"1990-02-27T03:14:26.472Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9da1dd7-afc7-46e1-8a0b-ec5595a642af",
+          "name": "Delete a dataflow",
+          "request": {
+            "name": "Delete a dataflow",
+            "description": {
+              "content": "Deletes a dataflow object and its associated lineage paths.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataflow",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Alation instance hostname",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf86fe0e-4b17-4003-88a5-fbcdda825904",
+              "name": "Dataflow deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataflow",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Alation instance hostname",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Alation instance hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-alation-instance.com",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}/integration/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6d6e0ff9-f931-4417-a66d-f23109061d76",
+    "name": "Alation Data Catalog Aggregated Context Dataflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.\n\nContact Support:\n Name: Alation Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
