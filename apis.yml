@@ -1,6 +1,9 @@
 aid: alation
 url: https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/apis.yml
 name: Alation
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 tags:
 - Data Catalog
 - Data Governance
@@ -998,6 +1001,8 @@ apis:
   humanURL: https://developer.alation.com
   baseURL: https://your-instance.alation.com/integration/v2
   tags:
+  - Schema
+  tags_raw:
   - Schemas
   properties:
   - type: OpenAPI
