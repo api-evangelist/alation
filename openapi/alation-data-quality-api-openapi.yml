@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alation Data Catalog Aggregated Context Data Quality API
-  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  title: Alation Governance Data Quality API
+  description: REST API for data governance workflows in the Alation platform, including business glossary management, policy enforcement, stewardship assignments, and data quality rules.
   version: 1.0.0
   contact:
     name: Alation Developer Support
@@ -12,7 +12,6 @@ servers:
   variables:
     instance:
       default: your-alation-instance.com
-      description: Your Alation instance hostname
 security:
 - BearerToken: []
 tags:
@@ -88,30 +87,6 @@ paths:
                 $ref: '#/components/schemas/DataQualityScoreList'
 components:
   schemas:
-    DataQualityScoreList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataQualityScore'
-    DataQualityScore:
-      type: object
-      properties:
-        object_type:
-          type: string
-        object_id:
-          type: integer
-        overall_score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 100
-        dimensions:
-          type: object
-          additionalProperties:
-            type: number
-            format: float
-        last_evaluated:
-          type: string
-          format: date-time
     DataQualityRule:
       allOf:
       - $ref: '#/components/schemas/DataQualityRuleRequest'
@@ -146,12 +121,35 @@ components:
           type: string
         object_id:
           type: integer
+    DataQualityScoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityScore'
     DataQualityRuleList:
       type: array
       items:
         $ref: '#/components/schemas/DataQualityRule'
+    DataQualityScore:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        overall_score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        dimensions:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+        last_evaluated:
+          type: string
+          format: date-time
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
-      description: API access token obtained from /integration/v1/createRefreshToken/

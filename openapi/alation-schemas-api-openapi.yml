@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alation Data Catalog Aggregated Context Schemas API
+  title: Alation Data Catalog Schemas API
   description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
   version: 1.0.0
   contact:

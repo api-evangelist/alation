@@ -1,36 +1,48 @@
 {
   "provider": "alation",
   "sources": [
-    "alation-aggregated-context-api-openapi.yml",
-    "alation-columns-api-openapi.yml",
-    "alation-custom-fields-api-openapi.yml",
-    "alation-data-quality-api-openapi.yml",
-    "alation-data-sources-api-openapi.yml",
-    "alation-dataflows-api-openapi.yml",
-    "alation-glossary-terms-api-openapi.yml",
-    "alation-lineage-api-openapi.yml",
-    "alation-policies-api-openapi.yml",
-    "alation-schemas-api-openapi.yml",
-    "alation-search-api-openapi.yml",
-    "alation-tables-api-openapi.yml"
+    "_original/alation-data-catalog-openapi.yaml",
+    "_original/alation-governance-openapi.yaml",
+    "_original/alation-lineage-openapi.yaml",
+    "_original/alation-search-openapi.yaml"
   ],
   "outputs": [
-    "alation-aggregated-context-api-openapi.yml",
     "alation-columns-api-openapi.yml",
     "alation-custom-fields-api-openapi.yml",
-    "alation-data-quality-api-openapi.yml",
     "alation-data-sources-api-openapi.yml",
-    "alation-dataflows-api-openapi.yml",
-    "alation-glossary-terms-api-openapi.yml",
-    "alation-lineage-api-openapi.yml",
-    "alation-policies-api-openapi.yml",
     "alation-schemas-api-openapi.yml",
-    "alation-search-api-openapi.yml",
-    "alation-tables-api-openapi.yml"
+    "alation-tables-api-openapi.yml",
+    "alation-data-quality-api-openapi.yml",
+    "alation-glossary-terms-api-openapi.yml",
+    "alation-policies-api-openapi.yml",
+    "alation-dataflows-api-openapi.yml",
+    "alation-lineage-api-openapi.yml",
+    "alation-aggregated-context-api-openapi.yml",
+    "alation-search-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "alation-data-catalog-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alation-governance-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alation-lineage-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "alation-search-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "alation-aggregated-context-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-columns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-custom-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-data-quality-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-data-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-dataflows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-glossary-terms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-lineage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-schemas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alation-tables-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

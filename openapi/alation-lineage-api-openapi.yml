@@ -1,18 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alation Data Catalog Aggregated Context Lineage API
-  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  title: Alation Lineage API
+  description: REST API for managing data lineage and dataflow objects in the Alation data intelligence platform. Supports creating, retrieving, updating, and deleting lineage paths and dataflow objects.
   version: 1.0.0
   contact:
     name: Alation Developer Support
     url: https://developer.alation.com
 servers:
-- url: https://{instance}/integration/v2
+- url: https://{instance}/api/v1
   description: Alation instance
   variables:
     instance:
       default: your-alation-instance.com
-      description: Your Alation instance hostname
 security:
 - BearerToken: []
 tags:
@@ -58,6 +57,17 @@ paths:
                 $ref: '#/components/schemas/LineageGraph'
 components:
   schemas:
+    LineageGraph:
+      type: object
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageEdge'
     LineageNode:
       type: object
       properties:
@@ -70,17 +80,6 @@ components:
         url:
           type: string
           format: uri
-    LineageGraph:
-      type: object
-      properties:
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineageNode'
-        edges:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineageEdge'
     LineageEdge:
       type: object
       properties:
@@ -94,4 +93,3 @@ components:
     BearerToken:
       type: http
       scheme: bearer
-      description: API access token obtained from /integration/v1/createRefreshToken/

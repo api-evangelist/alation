@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alation Data Catalog Aggregated Context API
-  description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
+  title: Alation Search Aggregated Context API
+  description: REST API for searching and discovering catalog assets in the Alation data intelligence platform. Supports full-text search, AI-powered semantic search, and aggregated context retrieval.
   version: 1.0.0
   contact:
     name: Alation Developer Support
@@ -12,7 +12,6 @@ servers:
   variables:
     instance:
       default: your-alation-instance.com
-      description: Your Alation instance hostname
 security:
 - BearerToken: []
 tags:
@@ -43,22 +42,6 @@ paths:
           description: Invalid request
 components:
   schemas:
-    ContextRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: Natural language query for context retrieval
-        object_types:
-          type: array
-          items:
-            type: string
-          description: Filter results by object types
-        limit:
-          type: integer
-          default: 10
     ContextResponse:
       type: object
       properties:
@@ -78,8 +61,23 @@ components:
               metadata:
                 type: object
                 additionalProperties: true
+    ContextRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: Natural language query for context retrieval
+        object_types:
+          type: array
+          items:
+            type: string
+          description: Filter results by object types
+        limit:
+          type: integer
+          default: 10
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
-      description: API access token obtained from /integration/v1/createRefreshToken/

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Alation Data Catalog Aggregated Context Data Sources API
+  title: Alation Data Catalog Data Sources API
   description: REST API for managing data sources, schemas, tables, and catalog objects in the Alation data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object management.
   version: 1.0.0
   contact:
@@ -74,10 +74,6 @@ paths:
           description: Data source not found
 components:
   schemas:
-    DataSourceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataSource'
     DataSource:
       type: object
       properties:
@@ -109,6 +105,10 @@ components:
           type: string
           format: uri
           description: Alation catalog URL for this data source
+    DataSourceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
   securitySchemes:
     BearerToken:
       type: http
