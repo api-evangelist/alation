@@ -101,8 +101,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -205,8 +203,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -309,8 +305,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -413,8 +407,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -517,8 +509,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -621,8 +611,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -725,8 +713,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -829,8 +815,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -933,8 +917,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -1039,8 +1021,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -1143,8 +1123,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
@@ -1247,8 +1225,6 @@ apis:
     url: examples/alation-alation-data-catalog-column-example.json
   - type: Examples
     url: examples/alation-alation-data-catalog-custom-field-value-example.json
-  - type: GraphQL
-    url: graphql/alation-graphql.md
   - type: JSONSchema
     url: json-schema/alation-alation-lineage-dataflow-schema.json
   - type: JSONSchema
