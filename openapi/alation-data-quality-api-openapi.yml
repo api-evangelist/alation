@@ -121,14 +121,6 @@ components:
           type: string
         object_id:
           type: integer
-    DataQualityScoreList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataQualityScore'
-    DataQualityRuleList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataQualityRule'
     DataQualityScore:
       type: object
       properties:
@@ -149,6 +141,14 @@ components:
         last_evaluated:
           type: string
           format: date-time
+    DataQualityScoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityScore'
+    DataQualityRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityRule'
   securitySchemes:
     BearerToken:
       type: http

@@ -137,6 +137,19 @@ components:
         breadcrumb:
           type: string
           description: Path to the object in the catalog hierarchy
+    ArticleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Article'
+    SearchResults:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
     Article:
       type: object
       properties:
@@ -158,19 +171,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    ArticleList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Article'
-    SearchResults:
-      type: object
-      properties:
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchResult'
   securitySchemes:
     BearerToken:
       type: http

@@ -57,17 +57,15 @@ paths:
                 $ref: '#/components/schemas/LineageGraph'
 components:
   schemas:
-    LineageGraph:
+    LineageEdge:
       type: object
       properties:
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineageNode'
-        edges:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineageEdge'
+        source:
+          $ref: '#/components/schemas/LineageNode'
+        target:
+          $ref: '#/components/schemas/LineageNode'
+        dataflow_id:
+          type: integer
     LineageNode:
       type: object
       properties:
@@ -80,15 +78,17 @@ components:
         url:
           type: string
           format: uri
-    LineageEdge:
+    LineageGraph:
       type: object
       properties:
-        source:
-          $ref: '#/components/schemas/LineageNode'
-        target:
-          $ref: '#/components/schemas/LineageNode'
-        dataflow_id:
-          type: integer
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageNode'
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineageEdge'
   securitySchemes:
     BearerToken:
       type: http

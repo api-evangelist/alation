@@ -158,10 +158,6 @@ components:
         object_id:
           type: integer
           description: ID of the catalog object
-    DataflowList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Dataflow'
     DataflowRequest:
       type: object
       required:
@@ -184,6 +180,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataflowNode'
+    DataflowList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Dataflow'
   securitySchemes:
     BearerToken:
       type: http

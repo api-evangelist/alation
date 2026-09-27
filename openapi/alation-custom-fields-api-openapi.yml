@@ -63,19 +63,6 @@ paths:
           description: Invalid request
 components:
   schemas:
-    CustomFieldValue:
-      type: object
-      properties:
-        field_id:
-          type: integer
-        field_name:
-          type: string
-        object_type:
-          type: string
-        object_id:
-          type: integer
-        value:
-          description: Field value (string, array, or object depending on field type)
     CustomFieldValueUpdateList:
       type: array
       items:
@@ -89,6 +76,19 @@ components:
             type: integer
           value:
             description: New field value
+    CustomFieldValue:
+      type: object
+      properties:
+        field_id:
+          type: integer
+        field_name:
+          type: string
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        value:
+          description: Field value (string, array, or object depending on field type)
     CustomFieldValueList:
       type: array
       items:
