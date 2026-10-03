@@ -57,15 +57,6 @@ paths:
                 $ref: '#/components/schemas/LineageGraph'
 components:
   schemas:
-    LineageEdge:
-      type: object
-      properties:
-        source:
-          $ref: '#/components/schemas/LineageNode'
-        target:
-          $ref: '#/components/schemas/LineageNode'
-        dataflow_id:
-          type: integer
     LineageNode:
       type: object
       properties:
@@ -89,6 +80,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineageEdge'
+    LineageEdge:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/LineageNode'
+        target:
+          $ref: '#/components/schemas/LineageNode'
+        dataflow_id:
+          type: integer
   securitySchemes:
     BearerToken:
       type: http

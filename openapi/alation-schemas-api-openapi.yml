@@ -72,6 +72,10 @@ paths:
                 $ref: '#/components/schemas/Schema'
 components:
   schemas:
+    SchemaList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Schema'
     Schema:
       type: object
       properties:
@@ -89,10 +93,6 @@ components:
         url:
           type: string
           format: uri
-    SchemaList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Schema'
   securitySchemes:
     BearerToken:
       type: http

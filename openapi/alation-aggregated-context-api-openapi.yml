@@ -42,6 +42,22 @@ paths:
           description: Invalid request
 components:
   schemas:
+    ContextRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: Natural language query for context retrieval
+        object_types:
+          type: array
+          items:
+            type: string
+          description: Filter results by object types
+        limit:
+          type: integer
+          default: 10
     ContextResponse:
       type: object
       properties:
@@ -61,22 +77,6 @@ components:
               metadata:
                 type: object
                 additionalProperties: true
-    ContextRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: Natural language query for context retrieval
-        object_types:
-          type: array
-          items:
-            type: string
-          description: Filter results by object types
-        limit:
-          type: integer
-          default: 10
   securitySchemes:
     BearerToken:
       type: http

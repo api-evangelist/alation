@@ -103,6 +103,10 @@ components:
           type: array
           items:
             type: integer
+    PolicyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy'
     Policy:
       allOf:
       - $ref: '#/components/schemas/PolicyRequest'
@@ -116,10 +120,6 @@ components:
           created_at:
             type: string
             format: date-time
-    PolicyList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Policy'
   securitySchemes:
     BearerToken:
       type: http

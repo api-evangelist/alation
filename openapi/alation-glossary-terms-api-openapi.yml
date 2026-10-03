@@ -129,10 +129,6 @@ paths:
           description: Deleted successfully
 components:
   schemas:
-    GlossaryTermList:
-      type: array
-      items:
-        $ref: '#/components/schemas/GlossaryTerm'
     GlossaryTermRequest:
       type: object
       required:
@@ -171,6 +167,10 @@ components:
           updated_at:
             type: string
             format: date-time
+    GlossaryTermList:
+      type: array
+      items:
+        $ref: '#/components/schemas/GlossaryTerm'
   securitySchemes:
     BearerToken:
       type: http

@@ -130,19 +130,6 @@ paths:
           description: Dataflow deleted
 components:
   schemas:
-    Dataflow:
-      allOf:
-      - $ref: '#/components/schemas/DataflowRequest'
-      - type: object
-        properties:
-          id:
-            type: integer
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
     DataflowNode:
       type: object
       properties:
@@ -180,6 +167,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataflowNode'
+    Dataflow:
+      allOf:
+      - $ref: '#/components/schemas/DataflowRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
     DataflowList:
       type: array
       items:

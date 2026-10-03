@@ -87,16 +87,26 @@ paths:
                 $ref: '#/components/schemas/DataQualityScoreList'
 components:
   schemas:
-    DataQualityRule:
-      allOf:
-      - $ref: '#/components/schemas/DataQualityRuleRequest'
-      - type: object
-        properties:
-          id:
-            type: integer
-          created_at:
-            type: string
-            format: date-time
+    DataQualityScore:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        overall_score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 100
+        dimensions:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+        last_evaluated:
+          type: string
+          format: date-time
     DataQualityRuleRequest:
       type: object
       required:
@@ -121,30 +131,20 @@ components:
           type: string
         object_id:
           type: integer
-    DataQualityScore:
-      type: object
-      properties:
-        object_type:
-          type: string
-        object_id:
-          type: integer
-        overall_score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 100
-        dimensions:
-          type: object
-          additionalProperties:
-            type: number
-            format: float
-        last_evaluated:
-          type: string
-          format: date-time
     DataQualityScoreList:
       type: array
       items:
         $ref: '#/components/schemas/DataQualityScore'
+    DataQualityRule:
+      allOf:
+      - $ref: '#/components/schemas/DataQualityRuleRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          created_at:
+            type: string
+            format: date-time
     DataQualityRuleList:
       type: array
       items:
