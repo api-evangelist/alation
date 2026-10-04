@@ -57,18 +57,6 @@ paths:
                 $ref: '#/components/schemas/LineageGraph'
 components:
   schemas:
-    LineageNode:
-      type: object
-      properties:
-        object_type:
-          type: string
-        object_id:
-          type: integer
-        title:
-          type: string
-        url:
-          type: string
-          format: uri
     LineageGraph:
       type: object
       properties:
@@ -89,6 +77,18 @@ components:
           $ref: '#/components/schemas/LineageNode'
         dataflow_id:
           type: integer
+    LineageNode:
+      type: object
+      properties:
+        object_type:
+          type: string
+        object_id:
+          type: integer
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
   securitySchemes:
     BearerToken:
       type: http

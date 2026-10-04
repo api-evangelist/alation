@@ -83,6 +83,23 @@ paths:
                 $ref: '#/components/schemas/Policy'
 components:
   schemas:
+    Policy:
+      allOf:
+      - $ref: '#/components/schemas/PolicyRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          url:
+            type: string
+            format: uri
+          created_at:
+            type: string
+            format: date-time
+    PolicyList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Policy'
     PolicyRequest:
       type: object
       required:
@@ -103,23 +120,6 @@ components:
           type: array
           items:
             type: integer
-    PolicyList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Policy'
-    Policy:
-      allOf:
-      - $ref: '#/components/schemas/PolicyRequest'
-      - type: object
-        properties:
-          id:
-            type: integer
-          url:
-            type: string
-            format: uri
-          created_at:
-            type: string
-            format: date-time
   securitySchemes:
     BearerToken:
       type: http

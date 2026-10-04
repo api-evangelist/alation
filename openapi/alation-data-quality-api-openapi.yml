@@ -87,6 +87,14 @@ paths:
                 $ref: '#/components/schemas/DataQualityScoreList'
 components:
   schemas:
+    DataQualityScoreList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityScore'
+    DataQualityRuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataQualityRule'
     DataQualityScore:
       type: object
       properties:
@@ -107,6 +115,16 @@ components:
         last_evaluated:
           type: string
           format: date-time
+    DataQualityRule:
+      allOf:
+      - $ref: '#/components/schemas/DataQualityRuleRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          created_at:
+            type: string
+            format: date-time
     DataQualityRuleRequest:
       type: object
       required:
@@ -131,24 +149,6 @@ components:
           type: string
         object_id:
           type: integer
-    DataQualityScoreList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataQualityScore'
-    DataQualityRule:
-      allOf:
-      - $ref: '#/components/schemas/DataQualityRuleRequest'
-      - type: object
-        properties:
-          id:
-            type: integer
-          created_at:
-            type: string
-            format: date-time
-    DataQualityRuleList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataQualityRule'
   securitySchemes:
     BearerToken:
       type: http

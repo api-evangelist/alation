@@ -63,6 +63,19 @@ paths:
           description: Invalid request
 components:
   schemas:
+    CustomFieldValueUpdateList:
+      type: array
+      items:
+        type: object
+        properties:
+          field_id:
+            type: integer
+          object_type:
+            type: string
+          object_id:
+            type: integer
+          value:
+            description: New field value
     CustomFieldValueList:
       type: array
       items:
@@ -80,19 +93,6 @@ components:
           type: integer
         value:
           description: Field value (string, array, or object depending on field type)
-    CustomFieldValueUpdateList:
-      type: array
-      items:
-        type: object
-        properties:
-          field_id:
-            type: integer
-          object_type:
-            type: string
-          object_id:
-            type: integer
-          value:
-            description: New field value
   securitySchemes:
     BearerToken:
       type: http

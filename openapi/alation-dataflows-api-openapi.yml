@@ -130,6 +130,10 @@ paths:
           description: Dataflow deleted
 components:
   schemas:
+    DataflowList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Dataflow'
     DataflowNode:
       type: object
       properties:
@@ -180,10 +184,6 @@ components:
           updated_at:
             type: string
             format: date-time
-    DataflowList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Dataflow'
   securitySchemes:
     BearerToken:
       type: http

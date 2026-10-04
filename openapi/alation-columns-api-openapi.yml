@@ -52,6 +52,10 @@ paths:
                 $ref: '#/components/schemas/ColumnList'
 components:
   schemas:
+    ColumnList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Column'
     Column:
       type: object
       properties:
@@ -73,10 +77,6 @@ components:
           type: boolean
         is_primary_key:
           type: boolean
-    ColumnList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Column'
   securitySchemes:
     BearerToken:
       type: http

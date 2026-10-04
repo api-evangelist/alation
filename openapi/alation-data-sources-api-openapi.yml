@@ -74,10 +74,6 @@ paths:
           description: Data source not found
 components:
   schemas:
-    DataSourceList:
-      type: array
-      items:
-        $ref: '#/components/schemas/DataSource'
     DataSource:
       type: object
       properties:
@@ -109,6 +105,10 @@ components:
           type: string
           format: uri
           description: Alation catalog URL for this data source
+    DataSourceList:
+      type: array
+      items:
+        $ref: '#/components/schemas/DataSource'
   securitySchemes:
     BearerToken:
       type: http
