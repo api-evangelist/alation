@@ -1286,6 +1286,9 @@ apis:
   - type: Examples
     url: examples/alation-alation-search-article-example.json
 common:
+- type: CapabilityMap
+  url: capabilities/alation-capability-edges.yml
+  name: Alation Business Capability Map
 - type: AgenticAccess
   url: agentic-access/alation-agentic-access.yml
 - type: TrustCenter

@@ -1,0 +1,112 @@
+slug: alation
+provider: Alation
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: Data Quality
+  spec_file: alation-data-quality-api-openapi.yml
+  capability_id: BC-610.30
+  capability_id_l1: BC-610
+  capability_name: Data Quality Management
+  confidence: 0.9
+  evidence: GET /data_quality/rule/  listDataQualityRules; POST /data_quality/rule/  createDataQualityRule;
+    GET /data_quality/score/  getDataQualityScores
+  reason: Operations create and list data quality rules and retrieve data quality scores — this is plainly
+    data quality monitoring and remediation support.
+- tag: Policies
+  spec_file: alation-policies-api-openapi.yml
+  capability_id: BC-610.10
+  capability_id_l1: BC-610
+  capability_name: Data Governance Management
+  confidence: 0.78
+  evidence: GET /policy/  listPolicies; POST /policy/  createPolicy; "REST API for data governance workflows
+    ... policy enforcement, stewardship assignments"
+  reason: Creates and lists data governance policies in the catalog — data ownership, stewardship, policies
+    and standards. These are data policies, not enterprise compliance policies, so BC-610.10 rather than
+    BC-130.20.
+- tag: Columns
+  spec_file: alation-columns-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: 'GET /attribute/  listColumns  List columns; schemas: Column, ColumnList; "managing data sources,
+    schemas, tables, and catalog objects"'
+  reason: Exposes catalogued column-level metadata for data assets — part of data cataloguing/metadata
+    management within Information & Data Management. Evidence is a single list operation, so no L2 is
+    claimed.
+- tag: Dataflows
+  spec_file: alation-dataflows-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: 'POST /dataflow/  createDataflow; "REST API for managing data lineage and dataflow objects";
+    schemas: DataflowNode, Dataflow'
+  reason: CRUD over lineage dataflow objects describing how data moves between assets. This is data lineage/metadata
+    management; it straddles governance and data architecture, so only the L1 is asserted.
+- tag: Glossary Terms
+  spec_file: alation-glossary-terms-api-openapi.yml
+  capability_id: BC-610.10
+  capability_id_l1: BC-610
+  capability_name: Data Governance Management
+  confidence: 0.7
+  evidence: GET /glossary_term/  listGlossaryTerms; POST /glossary_term/  createGlossaryTerm; "including
+    business glossary management, policy enforcement, stewardship assignments"
+  reason: CRUD over business glossary terms, described by the vendor as part of data governance workflows
+    including stewardship. Mapped to Data Governance Management; a business-information-modeling reading
+    is also arguable, hence 0.7.
+- tag: Lineage
+  spec_file: alation-lineage-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: 'GET /lineage/  getLineage  Get lineage for an object; schemas: LineageNode, LineageGraph,
+    LineageEdge'
+  reason: Returns the lineage graph for a catalogued object — data lineage is a core Information & Data
+    Management concern. Ambiguous between governance and data architecture sub-capabilities, so L1 only.
+- tag: Schemas
+  spec_file: alation-schemas-api-openapi.yml
+  capability_id: BC-610.10
+  capability_id_l1: BC-610
+  capability_name: Data Governance Management
+  confidence: 0.7
+  evidence: '"REST API for managing data sources, schemas, tables, and catalog objects in the Alation
+    data intelligence platform. Supports metadata retrieval, custom field updates, and catalog object
+    management." — operations "List schemas", "Get a schema"'
+  reason: Catalog metadata objects (schemas) in a data cataloguing/governance platform — this is enterprise
+    data governance/stewardship tooling, Information & Data Management. L2 Data Governance chosen because
+    the vendor frames the catalog as 'data cataloging, governance, and collaboration', though Data Architecture
+    would be an adjacent reading.
+- tag: Search
+  spec_file: alation-search-api-openapi.yml
+  capability_id: BC-610
+  capability_id_l1: BC-610
+  capability_name: Information & Data Management
+  confidence: 0.7
+  evidence: '"REST API for searching and discovering catalog assets in the Alation data intelligence platform.
+    Supports full-text search, AI-powered semantic search" — "searchCatalog  Search the catalog"'
+  reason: Although 'Search' is often plumbing, here the operations search the data catalog and its documentation
+    articles — asset discovery within a data intelligence platform, i.e. Information & Data Management.
+    No single L2 is clearly named (governance vs. analytics), so L2 is left null.
+- tag: Tables
+  spec_file: alation-tables-api-openapi.yml
+  capability_id: BC-610.10
+  capability_id_l1: BC-610
+  capability_name: Data Governance Management
+  confidence: 0.7
+  evidence: '"List tables", "Get a table"; description: "managing data sources, schemas, tables, and catalog
+    objects ... metadata retrieval, custom field updates"'
+  reason: Table-level catalog metadata management in Alation's data catalog — data governance/stewardship
+    over the data estate, not an application or business-domain object.
