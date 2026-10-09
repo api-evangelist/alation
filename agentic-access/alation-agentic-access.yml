@@ -1,73 +1,26 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/alation-data-catalog-openapi.yaml, openapi/alation-governance-openapi.yaml,
-  openapi/alation-lineage-openapi.yaml, openapi/alation-search-openapi.yaml
+source: openapi/alation-aggregated-context-api-openapi.yml, openapi/alation-columns-api-openapi.yml,
+  openapi/alation-custom-fields-api-openapi.yml, openapi/alation-data-quality-api-openapi.yml,
+  openapi/alation-data-sources-api-openapi.yml, openapi/alation-dataflows-api-openapi.yml, openapi/alation-glossary-terms-api-openapi.yml,
+  openapi/alation-lineage-api-openapi.yml, openapi/alation-policies-api-openapi.yml, openapi/alation-schemas-api-openapi.yml,
+  openapi/alation-search-api-openapi.yml, openapi/alation-tables-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 30
   by_action_class:
-    connected: 20
-    acting: 10
+    connected: 21
+    acting: 9
   by_consequence:
-    read: 20
-    write: 10
+    read: 21
+    write: 9
   human_in_the_loop_required: 0
 operations:
-- path: /datasource/
-  method: get
-  operationId: listDataSources
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /datasource/{id}/
-  method: get
-  operationId: getDataSource
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /schema/
-  method: get
-  operationId: listSchemas
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /schema/{id}/
-  method: get
-  operationId: getSchema
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /table/
-  method: get
-  operationId: listTables
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /table/{id}/
-  method: get
-  operationId: getTable
+- path: /aggregated_context/
+  method: post
+  operationId: getAggregatedContext
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -98,6 +51,130 @@ operations:
 - path: /custom_field_value/
   method: put
   operationId: updateCustomFieldValues
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data_quality/rule/
+  method: get
+  operationId: listDataQualityRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data_quality/rule/
+  method: post
+  operationId: createDataQualityRule
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data_quality/score/
+  method: get
+  operationId: getDataQualityScores
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /datasource/
+  method: get
+  operationId: listDataSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /datasource/{id}/
+  method: get
+  operationId: getDataSource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /dataflow/
+  method: get
+  operationId: listDataflows
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /dataflow/
+  method: post
+  operationId: createDataflow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /dataflow/{id}/
+  method: get
+  operationId: getDataflow
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /dataflow/{id}/
+  method: put
+  operationId: updateDataflow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /dataflow/{id}/
+  method: delete
+  operationId: deleteDataflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -179,6 +256,16 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /lineage/
+  method: get
+  operationId: getLineage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /policy/
   method: get
   operationId: listPolicies
@@ -215,9 +302,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /data_quality/rule/
+- path: /schema/
   method: get
-  operationId: listDataQualityRules
+  operationId: listSchemas
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -225,103 +312,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /data_quality/rule/
-  method: post
-  operationId: createDataQualityRule
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data_quality/score/
+- path: /schema/{id}/
   method: get
-  operationId: getDataQualityScores
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /dataflow/
-  method: get
-  operationId: listDataflows
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /dataflow/
-  method: post
-  operationId: createDataflow
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /dataflow/{id}/
-  method: get
-  operationId: getDataflow
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /dataflow/{id}/
-  method: put
-  operationId: updateDataflow
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /dataflow/{id}/
-  method: delete
-  operationId: deleteDataflow
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /lineage/
-  method: get
-  operationId: getLineage
+  operationId: getSchema
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -339,22 +332,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /aggregated_context/
-  method: post
-  operationId: getAggregatedContext
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /article/
   method: get
   operationId: listArticles
@@ -368,6 +345,26 @@ operations:
 - path: /article/{id}/
   method: get
   operationId: getArticle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /table/
+  method: get
+  operationId: listTables
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /table/{id}/
+  method: get
+  operationId: getTable
   x-agentic-access:
     action-class: connected
     consequence: read

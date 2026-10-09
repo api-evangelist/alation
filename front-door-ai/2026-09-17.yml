@@ -1,0 +1,35 @@
+# Front Door AI Index — alation — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: alation
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: alation.com
+  final_host: www.alation.com
+  ownership: own
+  owner: alation
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 30
+  band: 6
+  band_label: dominant
+  host_score: 30
+  density: 46.37
+  words: 647
+  tiers:
+    agentic: 5
+    core: 25
+    model: 0
+  ambiguous: 15
+  top_terms:
+    AI: 20
+    agent: 9
+    intelligence: 5
+    agentic: 4
+    machine learning: 4
+    ML: 1
+    automation: 1
+    prompts: 1
