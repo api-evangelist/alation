@@ -116,31 +116,6 @@ paths:
                 $ref: '#/components/schemas/Article'
 components:
   schemas:
-    ArticleList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Article'
-    SearchResult:
-      type: object
-      properties:
-        id:
-          type: integer
-        object_type:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        url:
-          type: string
-          format: uri
-        score:
-          type: number
-          format: float
-          description: Relevance score
-        breadcrumb:
-          type: string
-          description: Path to the object in the catalog hierarchy
     SearchResults:
       type: object
       properties:
@@ -171,6 +146,31 @@ components:
         updated_at:
           type: string
           format: date-time
+    SearchResult:
+      type: object
+      properties:
+        id:
+          type: integer
+        object_type:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+          format: uri
+        score:
+          type: number
+          format: float
+          description: Relevance score
+        breadcrumb:
+          type: string
+          description: Path to the object in the catalog hierarchy
+    ArticleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Article'
   securitySchemes:
     BearerToken:
       type: http

@@ -76,6 +76,10 @@ paths:
                 $ref: '#/components/schemas/Table'
 components:
   schemas:
+    TableList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Table'
     Table:
       type: object
       properties:
@@ -100,10 +104,6 @@ components:
         url:
           type: string
           format: uri
-    TableList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Table'
   securitySchemes:
     BearerToken:
       type: http

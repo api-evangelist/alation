@@ -134,21 +134,19 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Dataflow'
-    DataflowNode:
-      type: object
-      properties:
-        object_type:
-          type: string
-          description: Type of catalog object
-          enum:
-          - table
-          - attribute
-          - datasource
-          - schema
-          - query
-        object_id:
-          type: integer
-          description: ID of the catalog object
+    Dataflow:
+      allOf:
+      - $ref: '#/components/schemas/DataflowRequest'
+      - type: object
+        properties:
+          id:
+            type: integer
+          created_at:
+            type: string
+            format: date-time
+          updated_at:
+            type: string
+            format: date-time
     DataflowRequest:
       type: object
       required:
@@ -171,19 +169,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataflowNode'
-    Dataflow:
-      allOf:
-      - $ref: '#/components/schemas/DataflowRequest'
-      - type: object
-        properties:
-          id:
-            type: integer
-          created_at:
-            type: string
-            format: date-time
-          updated_at:
-            type: string
-            format: date-time
+    DataflowNode:
+      type: object
+      properties:
+        object_type:
+          type: string
+          description: Type of catalog object
+          enum:
+          - table
+          - attribute
+          - datasource
+          - schema
+          - query
+        object_id:
+          type: integer
+          description: ID of the catalog object
   securitySchemes:
     BearerToken:
       type: http

@@ -63,6 +63,10 @@ paths:
           description: Invalid request
 components:
   schemas:
+    CustomFieldValueList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomFieldValue'
     CustomFieldValueUpdateList:
       type: array
       items:
@@ -76,10 +80,6 @@ components:
             type: integer
           value:
             description: New field value
-    CustomFieldValueList:
-      type: array
-      items:
-        $ref: '#/components/schemas/CustomFieldValue'
     CustomFieldValue:
       type: object
       properties:
