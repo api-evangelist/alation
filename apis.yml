@@ -779,6 +779,8 @@ apis:
   humanURL: https://developer.alation.com
   baseURL: https://your-instance.alation.com/integration/v2
   tags:
+  - Data Lineage
+  tags_raw:
   - Lineage
   properties:
   - type: OpenAPI
