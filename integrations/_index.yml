@@ -27,6 +27,32 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: alation-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200005532
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: alation-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A032UBHRD6Y-alation
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: alation-fivetran
   label: Fivetran
   partner: fivetran
@@ -53,29 +79,43 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
-- slug: alation-microsoft-teams-own
-  label: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_name: Microsoft Teams (own)
-  category: Microsoft Teams app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200005532
+- slug: alation-servicenow-store-partner-apps
+  label: ServiceNow Store (partner apps)
+  partner: servicenow
+  partner_name: ServiceNow Store (partner apps)
+  category: ServiceNow Store partner app / app certification
+  type: register
+  channel: standard-directory
+  evidence: https://store.servicenow.com/store/seller/38ec32b5476c7650d6b59535126d436a
   source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: alation-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://slack.com/marketplace/A032UBHRD6Y-alation
-  source: edge
-  relationship: platform-app
+  relationship: standard-participant
+  contract_reference:
+    register: ServiceNow Store (store.servicenow.com/store/sitemap_xml -> /store/app/<id> server-rendered pages)
+    standard: ServiceNow Store app certification (ServiceNow Certified App badge)
+    spec_file: null
+    role: servicenow-store-partner
+    registered_name: Alation, Inc
+    register_id: 38ec32b5476c7650d6b59535126d436a
+    matched_domain: alation.com
+    matched_by: domain
+    identity_source: the listing's own seller website link (no lookup)
+    certified_products:
+    - product: ServiceNow Certified App (scoped_app / standalone)
+      product_type: scoped_app / standalone
+      standard: ServiceNow Store app certification (ServiceNow Certified App badge)
+      lapsed: true
+      products_sample:
+      - Alation
+      releases:
+      - Yokohama
+      - Zurich
+    products_sample:
+    - Alation
+    signal_note: 'listing alone = standard-participant; certified_products = one entry per Application type the
+      seller holds a ServiceNow Certified App badge for, standard named on each; lapsed: true when none of that
+      type''s certified apps lists either of the two newest release families on the Store; app counts are context,
+      never counted'
+    detected_by: sweep-servicenow-store.py
+    detected: '2026-10-23'
   status: not-a-workflow
   arazzo: null
