@@ -1,4 +1,4 @@
-# Alation (alation)
+# Alation
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,168 +66,226 @@
 
 Alation is a data intelligence platform that helps organizations harness the power of their data by providing a centralized platform for data cataloging, governance, and collaboration. By enabling users to easily search, understand, and trust their data, Alation empowers organizations to make data-driven decisions with confidence. Through advanced analytics and AI capabilities, Alation helps organizations uncover insights, improve data quality, and drive innovation.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/alation/refs/heads/main/apis.yml)
+**Areas:** Data Catalog · Data Governance · Data Intelligence · Data Lineage · Data Quality · Business Glossary · Metadata Management · Artificial Intelligence
 
-## Scope
+## Alation on APIs.io
 
-- **Type:** Index
+Everything profiled for Alation is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/alation/](https://apis.io/providers/alation/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (12)
 
-- Data Catalog
-- Data Governance
-- Data Intelligence
-- Data Lineage
-- Data Quality
-- Business Glossary
-- Metadata Management
-- AI
+- [Alation Aggregated Context API](https://apis.io/apis/alation/alation-aggregated-context-api/) — Retrieve aggregated context for AI applications
+- [Alation Columns API](https://apis.io/apis/alation/alation-columns-api/) — Retrieve column metadata
+- [Alation Custom Fields API](https://apis.io/apis/alation/alation-custom-fields-api/) — Manage custom field values
+- [Alation Data Quality API](https://apis.io/apis/alation/alation-data-quality-api/) — Manage data quality rules and scores
+- [Alation Data Sources API](https://apis.io/apis/alation/alation-data-sources-api/) — Manage data source connections
+- [Alation Dataflows API](https://apis.io/apis/alation/alation-dataflows-api/) — Manage dataflow lineage objects
+- [Alation Glossary Terms API](https://apis.io/apis/alation/alation-glossary-terms-api/) — Manage business glossary terms
+- [Alation Lineage API](https://apis.io/apis/alation/alation-lineage-api/) — Retrieve lineage paths between catalog objects
+- [Alation Policies API](https://apis.io/apis/alation/alation-policies-api/) — Manage data governance policies
+- [Alation Schemas API](https://apis.io/apis/alation/alation-schemas-api/) — Retrieve schema metadata
+- [Alation Search API](https://apis.io/apis/alation/alation-search-api/) — Search catalog assets
+- [Alation Tables API](https://apis.io/apis/alation/alation-tables-api/) — Retrieve table metadata
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Alation Data Catalog API
+GraphQL schemas.
 
-REST API for managing data sources, schemas, tables, columns, and custom field values in the Alation data catalog. Supports metadata retrieval and batch updates for catalog objects.
+- [Moved to /providers/alation/](https://apis.io/graphqls/alation/alation-graphql/)
 
-- **Human URL:** [https://developer.alation.com](https://developer.alation.com)
-- **Base URL:** `https://your-instance.alation.com/integration/v2`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Data Catalog
-- Metadata
-- Data Sources
-- Schemas
-- Tables
-- Columns
+- [Alation Agentic Access](https://apis.io/agentic-access/alation/alation-agentic-access/)
 
-#### Properties
+#### JSON Schema (15)
 
-- [Documentation](https://developer.alation.com)
-- [OpenAPI](openapi/alation-data-catalog-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/alation-alation-data-catalog-data-source-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-data-catalog-schema-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-data-catalog-table-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-data-catalog-column-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-data-catalog-custom-field-value-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/alation-alation-data-catalog-data-source-structure.json)
-- [JSON Structure](json-structure/alation-alation-data-catalog-schema-structure.json)
-- [JSON Structure](json-structure/alation-alation-data-catalog-table-structure.json)
-- [JSON Structure](json-structure/alation-alation-data-catalog-column-structure.json)
-- [JSON Structure](json-structure/alation-alation-data-catalog-custom-field-value-structure.json)
-- [Example](examples/alation-alation-data-catalog-data-source-example.json)
-- [Example](examples/alation-alation-data-catalog-schema-example.json)
-- [Example](examples/alation-alation-data-catalog-table-example.json)
-- [Example](examples/alation-alation-data-catalog-column-example.json)
-- [Example](examples/alation-alation-data-catalog-custom-field-value-example.json)
+The data models the API reads and writes.
 
-### Alation Lineage API
+- [Column](https://apis.io/schemas/alation/alation-alation-data-catalog-column/)
+- [CustomFieldValue](https://apis.io/schemas/alation/alation-alation-data-catalog-custom-field-value/)
+- [DataSource](https://apis.io/schemas/alation/alation-alation-data-catalog-data-source/)
+- [Schema](https://apis.io/schemas/alation/alation-alation-data-catalog-schema/)
+- [Table](https://apis.io/schemas/alation/alation-alation-data-catalog-table/)
+- [DataQualityRule](https://apis.io/schemas/alation/alation-alation-governance-data-quality-rule/)
+- [DataQualityScore](https://apis.io/schemas/alation/alation-alation-governance-data-quality-score/)
+- [GlossaryTerm](https://apis.io/schemas/alation/alation-alation-governance-glossary-term/)
+- [Policy](https://apis.io/schemas/alation/alation-alation-governance-policy/)
+- [Dataflow](https://apis.io/schemas/alation/alation-alation-lineage-dataflow/)
+- [LineageGraph](https://apis.io/schemas/alation/alation-alation-lineage-lineage-graph/)
+- [Article](https://apis.io/schemas/alation/alation-alation-search-article/)
+- [ContextRequest](https://apis.io/schemas/alation/alation-alation-search-context-request/)
+- [SearchResult](https://apis.io/schemas/alation/alation-alation-search-search-result/)
+- [SearchResults](https://apis.io/schemas/alation/alation-alation-search-search-results/)
 
-REST API for managing data lineage and dataflow objects in Alation. Supports creating, retrieving, updating, and deleting lineage paths between catalog objects.
+#### JSON Structure (15)
 
-- **Human URL:** [https://developer.alation.com/dev/reference/lineage-overview](https://developer.alation.com/dev/reference/lineage-overview)
-- **Base URL:** `https://your-instance.alation.com/api/v1`
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Alation Alation Data Catalog Column Structure](https://apis.io/json-structure/alation/alation-alation-data-catalog-column-structure/)
+- [Alation Alation Data Catalog Custom Field Value Structure](https://apis.io/json-structure/alation/alation-alation-data-catalog-custom-field-value-structure/)
+- [Alation Alation Data Catalog Data Source Structure](https://apis.io/json-structure/alation/alation-alation-data-catalog-data-source-structure/)
+- [Alation Alation Data Catalog Schema Structure](https://apis.io/json-structure/alation/alation-alation-data-catalog-schema-structure/)
+- [Alation Alation Data Catalog Table Structure](https://apis.io/json-structure/alation/alation-alation-data-catalog-table-structure/)
+- [Alation Alation Governance Data Quality Rule Structure](https://apis.io/json-structure/alation/alation-alation-governance-data-quality-rule-structure/)
+- [Alation Alation Governance Data Quality Score Structure](https://apis.io/json-structure/alation/alation-alation-governance-data-quality-score-structure/)
+- [Alation Alation Governance Glossary Term Structure](https://apis.io/json-structure/alation/alation-alation-governance-glossary-term-structure/)
+- [Alation Alation Governance Policy Structure](https://apis.io/json-structure/alation/alation-alation-governance-policy-structure/)
+- [Alation Alation Lineage Dataflow Structure](https://apis.io/json-structure/alation/alation-alation-lineage-dataflow-structure/)
+- [Alation Alation Lineage Lineage Graph Structure](https://apis.io/json-structure/alation/alation-alation-lineage-lineage-graph-structure/)
+- [Alation Alation Search Article Structure](https://apis.io/json-structure/alation/alation-alation-search-article-structure/)
+- [Alation Alation Search Context Request Structure](https://apis.io/json-structure/alation/alation-alation-search-context-request-structure/)
+- [Alation Alation Search Search Result Structure](https://apis.io/json-structure/alation/alation-alation-search-search-result-structure/)
+- [Alation Alation Search Search Results Structure](https://apis.io/json-structure/alation/alation-alation-search-search-results-structure/)
 
-- Data Lineage
-- Dataflow
-- Metadata
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developer.alation.com)
-- [OpenAPI](openapi/alation-lineage-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/alation-alation-lineage-dataflow-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-lineage-lineage-graph-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/alation-alation-lineage-dataflow-structure.json)
-- [JSON Structure](json-structure/alation-alation-lineage-lineage-graph-structure.json)
-- [Example](examples/alation-alation-lineage-dataflow-example.json)
-- [Example](examples/alation-alation-lineage-lineage-graph-example.json)
+- [Alation Alation Context](https://apis.io/jsonld/alation/alation-alation-context/)
 
-### Alation Governance API
+#### Vocabulary (1)
 
-REST API for data governance workflows in Alation, including business glossary management, governance policy enforcement, and data quality rules and scoring.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://developer.alation.com](https://developer.alation.com)
-- **Base URL:** `https://your-instance.alation.com/integration/v2`
+- [Alation Vocabulary](https://apis.io/vocabularies/alation/alation-vocabulary/)
 
-#### Tags
+#### Examples (15)
 
-- Data Governance
-- Business Glossary
-- Data Quality
-- Policies
+Example requests and responses.
 
-#### Properties
+- [Alation Alation Data Catalog Column Example](https://apis.io/examples/alation/alation-alation-data-catalog-column-example/)
+- [Alation Alation Data Catalog Custom Field Value Example](https://apis.io/examples/alation/alation-alation-data-catalog-custom-field-value-example/)
+- [Alation Alation Data Catalog Data Source Example](https://apis.io/examples/alation/alation-alation-data-catalog-data-source-example/)
+- [Alation Alation Data Catalog Schema Example](https://apis.io/examples/alation/alation-alation-data-catalog-schema-example/)
+- [Alation Alation Data Catalog Table Example](https://apis.io/examples/alation/alation-alation-data-catalog-table-example/)
+- [Alation Alation Governance Data Quality Rule Example](https://apis.io/examples/alation/alation-alation-governance-data-quality-rule-example/)
+- [Alation Alation Governance Data Quality Score Example](https://apis.io/examples/alation/alation-alation-governance-data-quality-score-example/)
+- [Alation Alation Governance Glossary Term Example](https://apis.io/examples/alation/alation-alation-governance-glossary-term-example/)
+- [Alation Alation Governance Policy Example](https://apis.io/examples/alation/alation-alation-governance-policy-example/)
+- [Alation Alation Lineage Dataflow Example](https://apis.io/examples/alation/alation-alation-lineage-dataflow-example/)
+- [Alation Alation Lineage Lineage Graph Example](https://apis.io/examples/alation/alation-alation-lineage-lineage-graph-example/)
+- [Alation Alation Search Article Example](https://apis.io/examples/alation/alation-alation-search-article-example/)
+- [Alation Alation Search Context Request Example](https://apis.io/examples/alation/alation-alation-search-context-request-example/)
+- [Alation Alation Search Search Result Example](https://apis.io/examples/alation/alation-alation-search-search-result-example/)
+- [Alation Alation Search Search Results Example](https://apis.io/examples/alation/alation-alation-search-search-results-example/)
 
-- [Documentation](https://developer.alation.com)
-- [OpenAPI](openapi/alation-governance-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/alation-alation-governance-glossary-term-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-governance-policy-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-governance-data-quality-rule-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-governance-data-quality-score-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/alation-alation-governance-glossary-term-structure.json)
-- [JSON Structure](json-structure/alation-alation-governance-policy-structure.json)
-- [JSON Structure](json-structure/alation-alation-governance-data-quality-rule-structure.json)
-- [JSON Structure](json-structure/alation-alation-governance-data-quality-score-structure.json)
-- [Example](examples/alation-alation-governance-glossary-term-example.json)
-- [Example](examples/alation-alation-governance-policy-example.json)
-- [Example](examples/alation-alation-governance-data-quality-rule-example.json)
-- [Example](examples/alation-alation-governance-data-quality-score-example.json)
+#### Collections (13)
 
-### Alation Search API
+Postman and Open Collection request collections.
 
-REST API for searching and discovering catalog assets in Alation. Supports full-text search, AI-powered aggregated context retrieval, and article browsing.
+- [API Collection](https://apis.io/collections/alation/open-alation/)
+- [Alation Data Catalog Aggregated Context API](https://apis.io/collections/alation/open-alation-aggregated-context-api/)
+- [Alation Data Catalog Aggregated Context Columns API](https://apis.io/collections/alation/open-alation-columns-api/)
+- [Alation Data Catalog Aggregated Context Custom Fields API](https://apis.io/collections/alation/open-alation-custom-fields-api/)
+- [Alation Data Catalog Aggregated Context Data Quality API](https://apis.io/collections/alation/open-alation-data-quality-api/)
+- [Alation Data Catalog Aggregated Context Data Sources API](https://apis.io/collections/alation/open-alation-data-sources-api/)
+- [Alation Data Catalog Aggregated Context Dataflows API](https://apis.io/collections/alation/open-alation-dataflows-api/)
+- [Alation Data Catalog Aggregated Context Glossary Terms API](https://apis.io/collections/alation/open-alation-glossary-terms-api/)
+- [Alation Data Catalog Aggregated Context Lineage API](https://apis.io/collections/alation/open-alation-lineage-api/)
+- [Alation Data Catalog Aggregated Context Policies API](https://apis.io/collections/alation/open-alation-policies-api/)
+- [Alation Data Catalog Aggregated Context Schemas API](https://apis.io/collections/alation/open-alation-schemas-api/)
+- [Alation Data Catalog Aggregated Context Search API](https://apis.io/collections/alation/open-alation-search-api/)
+- [Alation Data Catalog Aggregated Context Tables API](https://apis.io/collections/alation/open-alation-tables-api/)
 
-- **Human URL:** [https://developer.alation.com](https://developer.alation.com)
-- **Base URL:** `https://your-instance.alation.com/integration/v2`
+#### Governance rules (2)
 
-#### Tags
+Spectral rulesets for the provider's contracts.
 
-- Search
-- Data Discovery
-- AI
-- Catalog
+- [Alation — jsonschema rules](https://apis.io/rules/alation/alation-jsonschema-spectral-rules/)
+- [Alation API Rules](https://apis.io/rules/alation/alation-spectral-rules/)
 
-#### Properties
+#### Security (4)
 
-- [Documentation](https://developer.alation.com)
-- [OpenAPI](openapi/alation-search-openapi.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/alation-alation-search-search-result-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-search-search-results-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-search-context-request-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/alation-alation-search-article-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/alation-alation-search-search-result-structure.json)
-- [JSON Structure](json-structure/alation-alation-search-search-results-structure.json)
-- [JSON Structure](json-structure/alation-alation-search-context-request-structure.json)
-- [JSON Structure](json-structure/alation-alation-search-article-structure.json)
-- [Example](examples/alation-alation-search-search-result-example.json)
-- [Example](examples/alation-alation-search-search-results-example.json)
-- [Example](examples/alation-alation-search-context-request-example.json)
-- [Example](examples/alation-alation-search-article-example.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Alation Authentication](https://apis.io/security/alation/alation-authentication/)
+- [Alation Domain Security](https://apis.io/security/alation/alation-domain-security/)
+- [Alation Trust Center](https://apis.io/security/alation/alation-trust-center/)
+- [Alation Vulnerability Disclosure](https://apis.io/security/alation/alation-vulnerability-disclosure/)
 
-- [LinkedIn](https://www.linkedin.com/company/alation)
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Alation Plans Pricing](https://apis.io/plans/alation/alation-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Alation Rate Limits](https://apis.io/rate-limits/alation/alation-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Alation Finops](https://apis.io/finops/alation/alation-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://alation.com)
 - [Documentation](https://developer.alation.com)
-- [Getting Started](https://developer.alation.com/dev/docs/about-the-alation-apis)
-- [GitHub Organization](https://github.com/Alation)
-- [Spectral Rules](rules/alation-spectral-rules.yml)
-- [Vocabulary](vocabulary/alation-vocabulary.yaml)
-- [JSON-LD](json-ld/alation-alation-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Integrations](https://www.alation.com/partners/)
+- [Getting started](https://developer.alation.com/dev/docs/about-the-alation-apis)
+- [Blog](https://www.alation.com/blog/)
+- [GitHub](https://github.com/Alation)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 39.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 63.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 13.2 |
+
+**Agent readiness 19.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 25.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/alation/](https://apis.io/providers/alation/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Alation: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/alation/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
