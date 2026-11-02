@@ -1,0 +1,86 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Alation
+providerId: alation
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: false
+tags:
+  - Data Catalog
+  - Data Governance
+  - Data Intelligence
+  - Data Lineage
+  - Data Quality
+  - Business Glossary
+  - Metadata Management
+  - AI
+description: Alation prices the Data Intelligence Platform via custom enterprise quotes - the public pricing
+  page is "Request Pricing" only. Commercial terms are bundled by edition (Alation Cloud Service tiers
+  and on-prem options), seat counts (steward / curator / consumer), and deployment scope. API access is
+  included with the Alation tenant and is not separately metered on the public pricing page.
+sources:
+  - https://www.alation.com/pricing/
+notes: No public price list. Plans below are placeholder enterprise shells; replace with the negotiated
+  edition + seat schedule once contracted.
+plans:
+  - id: alation-enterprise
+    name: Enterprise Quote
+    type: enterprise
+    description: Custom-quoted Alation Data Intelligence Platform engagement. Includes data catalog, lineage,
+      governance, and search APIs along with the Alation UI.
+    entries:
+      - label: Platform Subscription
+        description: Annual platform subscription dimensioned by edition, seats, and deployment scope
+        name: platform_subscription
+        type: subscription
+        metric: contract
+        limit: -1
+        timeFrame: year
+        geo: configurable
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+      - label: Named Seats
+        description: Steward / curator / consumer seat licenses
+        name: seats
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: year
+        geo: configurable
+        unit: 1
+        price: contact sales
+        userMultiplied: true
+    elements:
+      - name: Alation Data Catalog API
+      - name: Alation Lineage API
+      - name: Alation Governance API
+      - name: Alation Search API
+      - name: Alation UI
+      - name: Standard Support
+      - name: Optional Premium / 24x7 Support
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - seat
+  units:
+  - negotiated
+  - seat
+  plans:
+  - name: Enterprise Quote
+    access: enterprise
+    model: seat
+    model_how: derived
+    units:
+    - negotiated
+    - seat
+    periods:
+    - year
